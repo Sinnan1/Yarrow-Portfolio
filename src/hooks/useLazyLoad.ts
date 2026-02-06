@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type RefObject } from 'react';
 
 interface LazyLoadOptions {
   rootMargin?: string;
@@ -12,7 +12,7 @@ interface LazyLoadOptions {
  */
 export const useLazyLoad = (
   options: LazyLoadOptions = {}
-): [React.RefObject<HTMLElement>, boolean] => {
+): [RefObject<HTMLElement | null>, boolean] => {
   const { rootMargin = '200px', threshold = 0.01 } = options;
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
