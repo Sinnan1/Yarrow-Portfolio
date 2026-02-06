@@ -6,13 +6,13 @@ import Hero from '../sections/Hero';
 import HorizontalScroll from '../components/HorizontalScroll';
 import VideoPortal from '../components/VideoPortal';
 import MagazineLayout from '../components/MagazineLayout';
+import FeaturedWork from '../components/FeaturedWork';
 
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState<{ [key: string]: boolean }>({});
 
   const aboutRef = useRef<HTMLDivElement>(null);
-  const galleryRef = useRef<HTMLDivElement>(null);
   const featuredRef = useRef<HTMLDivElement>(null);
   const filmsRef = useRef<HTMLDivElement>(null);
   const storiesRef = useRef<HTMLDivElement>(null);
@@ -29,27 +29,12 @@ const Home = () => {
 
     const observer = new IntersectionObserver(observerCallback, { threshold: 0.1 });
 
-    [aboutRef, galleryRef, featuredRef, filmsRef, storiesRef, ibtdaRef].forEach((ref) => {
+    [aboutRef, featuredRef, filmsRef, storiesRef, ibtdaRef].forEach((ref) => {
       if (ref.current) observer.observe(ref.current);
     });
 
     return () => observer.disconnect();
   }, []);
-
-  const galleryImages = [
-    { src: '/gallery-1.jpg', span: 'col-span-1 row-span-2' },
-    { src: '/gallery-2.jpg', span: 'col-span-1 row-span-1' },
-    { src: '/gallery-3.jpg', span: 'col-span-1 row-span-1' },
-    { src: '/gallery-4.jpg', span: 'col-span-1 row-span-2' },
-    { src: '/gallery-5.jpg', span: 'col-span-1 row-span-2' },
-    { src: '/gallery-6.jpg', span: 'col-span-1 row-span-1' },
-    { src: '/wedding-1.jpg', span: 'col-span-1 row-span-2' },
-    { src: '/wedding-2.jpg', span: 'col-span-1 row-span-1' },
-    { src: '/wedding-3.jpg', span: 'col-span-1 row-span-1' },
-    { src: '/wedding-4.jpg', span: 'col-span-1 row-span-2' },
-    { src: '/story-1.jpg', span: 'col-span-1 row-span-1' },
-    { src: '/story-2.jpg', span: 'col-span-1 row-span-1' },
-  ];
 
   const featuredWeddings = [
     { image: '/wedding-1.jpg', couple: 'Reva & Zach', date: 'Oct 7, 2024' },
@@ -165,7 +150,7 @@ const Home = () => {
       <HorizontalScroll />
 
       {/* Media Logos Section */}
-      <section className="py-10 lg:py-14 px-8 lg:px-16 bg-cream border-y border-gold/10">
+      <section className="py-16 lg:py-20 px-8 lg:px-16 bg-cream border-y border-gold/10">
         <div className="max-w-6xl mx-auto">
           <p className="text-center text-xs tracking-[0.3em] uppercase text-black/40 mb-8">As Featured In</p>
           <div className="flex flex-wrap justify-center items-center gap-10 lg:gap-20">
@@ -181,33 +166,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Gallery Grid Section */}
-      <section ref={galleryRef} id="gallery" className="py-24 lg:py-32 px-4 lg:px-8 bg-cream">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <p className="text-xs tracking-[0.3em] uppercase text-black/50 mb-4">Our Portfolio</p>
-            <h3 className="font-serif text-3xl lg:text-4xl">Timeless Moments</h3>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4">
-            {galleryImages.map((image, index) => (
-              <div
-                key={index}
-                className={`overflow-hidden group transition-all duration-700 ${
-                  index % 7 === 0 || index % 7 === 3 ? 'aspect-[3/4]' : 'aspect-[4/3]'
-                } ${isVisible.gallery ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                style={{ transitionDelay: `${index * 50}ms` }}
-              >
-                <img
-                  src={image.src}
-                  alt={`Gallery ${index + 1}`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Featured Work Section - Replaces Gallery Grid */}
+      <FeaturedWork />
 
       {/* Signature Section 2: Video Portal */}
       <VideoPortal />
