@@ -48,6 +48,13 @@
     cursor: default;
   }
   
+  /* Smooth scroll with custom easing */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+  
   body {
     @apply bg-[#F5F0E8] text-[#333333] antialiased;
     font-family: 'Inter', sans-serif;

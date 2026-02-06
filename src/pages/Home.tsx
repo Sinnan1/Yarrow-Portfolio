@@ -7,6 +7,8 @@ import HorizontalScroll from '../components/HorizontalScroll';
 import VideoPortal from '../components/VideoPortal';
 import MagazineLayout from '../components/MagazineLayout';
 import FeaturedWork from '../components/FeaturedWork';
+import Testimonials from '../components/Testimonials';
+import OurApproach from '../components/OurApproach';
 
 
 const Home = () => {
@@ -370,6 +372,12 @@ const Home = () => {
 
       {/* Signature Section 3: Magazine Layout */}
       <MagazineLayout />
+
+      {/* Testimonials Section */}
+      <Testimonials />
+
+      {/* Our Approach Section */}
+      <OurApproach />
 
       {/* Ibtda Section */}
       <section ref={ibtdaRef} id="ibtda" className="relative h-auto">
