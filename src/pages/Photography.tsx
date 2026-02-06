@@ -130,20 +130,20 @@ const Photography = () => {
 
   return (
     <div className="min-h-screen bg-cream">
-      <section className="pt-8 pb-24 px-8 lg:px-16">
+      <section className="pt-12 pb-32 px-8 lg:px-16">
         <div className="max-w-[1400px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 border-b border-black/10 pb-8">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-24 border-b border-black/10 pb-10">
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-black/50 mb-3">Portfolio</p>
-              <h1 className="font-serif text-5xl lg:text-7xl">Curated Galleries</h1>
+              <p className="text-xs uppercase tracking-[0.3em] text-black/50 mb-4">Portfolio</p>
+              <h1 className="font-serif text-6xl lg:text-8xl">Curated Galleries</h1>
             </div>
 
-            <div className="flex gap-6 mt-8 md:mt-0">
+            <div className="flex gap-8 mt-8 md:mt-0">
               {filters.map((filter) => (
                 <button
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
-                  className={`text-sm tracking-widest uppercase transition-colors ${activeFilter === filter ? 'text-gold underline underline-offset-8' : 'text-black/40 hover:text-black'
+                  className={`text-sm tracking-widest uppercase transition-all duration-300 ${activeFilter === filter ? 'text-gold underline underline-offset-8 decoration-2' : 'text-black/40 hover:text-black'
                     }`}
                 >
                   {filter}
@@ -166,9 +166,9 @@ const Photography = () => {
                     <img
                       src={wedding.image}
                       alt={wedding.couple}
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                     />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                    <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
                   </div>
                   <div className="flex justify-between items-baseline border-b border-black/10 pb-4 group-hover:border-gold/50 transition-colors">
                     <h2 className="font-serif text-3xl group-hover:text-gold transition-colors">{wedding.couple}</h2>
@@ -192,9 +192,9 @@ const Photography = () => {
                     <img
                       src={wedding.image}
                       alt={wedding.couple}
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                     />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                    <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
                   </div>
                   <div className="flex justify-between items-baseline border-b border-black/10 pb-4 group-hover:border-gold/50 transition-colors">
                     <h2 className="font-serif text-3xl group-hover:text-gold transition-colors">{wedding.couple}</h2>
