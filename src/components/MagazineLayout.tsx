@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const MagazineLayout = () => {
     return (
-        <section className="py-24 px-4 bg-cream overflow-hidden">
+        <section className="py-32 lg:py-48 px-4 bg-cream overflow-hidden">
             <div className="max-w-[1400px] mx-auto">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-end mb-24 px-4 lg:px-12 border-b border-black/10 pb-12">
@@ -25,7 +25,7 @@ const MagazineLayout = () => {
                             <img
                                 src="/gallery-1.jpg"
                                 alt="Editorial 1"
-                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                                className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                             />
                         </div>
                         <div className="flex justify-between items-start border-t border-black/10 pt-4">
@@ -45,7 +45,7 @@ const MagazineLayout = () => {
                                 <img
                                     src="/gallery-4.jpg"
                                     alt="Editorial 2"
-                                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                                 />
                             </div>
                             <div className="flex justify-between items-start border-t border-black/10 pt-4">
@@ -55,7 +55,7 @@ const MagazineLayout = () => {
                         </div>
 
                         {/* Text Block */}
-                        <div className="bg-black text-cream p-12 lg:-ml-24 z-10 relative">
+                        <div className="bg-black text-cream p-12 lg:-ml-20 z-10 relative max-w-lg">
                             <p className="font-serif italic text-3xl lg:text-4xl leading-relaxed mb-8">
                                 "Yarrow captures the feeling, not just the look. Pure art."
                             </p>
@@ -71,7 +71,7 @@ const MagazineLayout = () => {
                             <img
                                 src="/gallery-5.jpg"
                                 alt="Editorial 3"
-                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 object-top"
+                                className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 object-top"
                             />
                         </div>
                         <div className="flex justify-between items-start border-t border-black/10 pt-4">
