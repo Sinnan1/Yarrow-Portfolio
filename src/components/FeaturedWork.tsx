@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import LazyImage from './LazyImage';
 
 interface FeaturedItem {
   id: number;
@@ -96,10 +97,10 @@ const FeaturedWork = () => {
               to={`/photography/${featuredItems[0].slug}`}
               className="group relative block h-[600px] lg:h-[700px] overflow-hidden"
             >
-              <img
+              <LazyImage
                 src={featuredItems[0].image}
                 alt={featuredItems[0].couple}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
               
@@ -136,10 +137,10 @@ const FeaturedWork = () => {
               to={`/photography/${featuredItems[1].slug}`}
               className="group relative block h-[290px] lg:h-[340px] overflow-hidden mb-4 lg:mb-6"
             >
-              <img
+              <LazyImage
                 src={featuredItems[1].image}
                 alt={featuredItems[1].couple}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-50 group-hover:opacity-30 transition-opacity duration-500" />
               
@@ -159,10 +160,10 @@ const FeaturedWork = () => {
               to={`/photography/${featuredItems[2].slug}`}
               className="group relative block h-[290px] lg:h-[340px] overflow-hidden"
             >
-              <img
+              <LazyImage
                 src={featuredItems[2].image}
                 alt={featuredItems[2].couple}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-50 group-hover:opacity-30 transition-opacity duration-500" />
               

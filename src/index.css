@@ -348,4 +348,27 @@
   .stagger-6 { animation-delay: 0.6s; }
   .stagger-7 { animation-delay: 0.7s; }
   .stagger-8 { animation-delay: 0.8s; }
+  
+  /* Mobile touch optimizations */
+  .touch-target {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  /* Touch feedback */
+  .touch-feedback {
+    -webkit-tap-highlight-color: rgba(166, 144, 96, 0.1);
+    tap-highlight-color: rgba(166, 144, 96, 0.1);
+  }
+  
+  @media (hover: none) and (pointer: coarse) {
+    /* Mobile-specific optimizations */
+    .hover\:scale-105:active {
+      transform: scale(0.98);
+    }
+    
+    .hover\:text-gold:active {
+      color: #A69060;
+    }
+  }
 }

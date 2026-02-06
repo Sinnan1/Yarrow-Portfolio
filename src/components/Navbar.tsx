@@ -124,7 +124,8 @@ const Navbar = ({ variant = 'default' }: NavbarProps) => {
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className={`transition-all duration-300 hover:text-gold hover:scale-110 ${iconColorClasses}`}
+              className={`transition-all duration-300 hover:text-gold hover:scale-110 touch-target touch-feedback ${iconColorClasses}`}
+              aria-label="Instagram"
             >
               <Instagram size={18} />
             </a>
@@ -132,7 +133,8 @@ const Navbar = ({ variant = 'default' }: NavbarProps) => {
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className={`transition-all duration-300 hover:text-gold hover:scale-110 ${iconColorClasses}`}
+              className={`transition-all duration-300 hover:text-gold hover:scale-110 touch-target touch-feedback ${iconColorClasses}`}
+              aria-label="Facebook"
             >
               <Facebook size={18} />
             </a>
@@ -140,16 +142,17 @@ const Navbar = ({ variant = 'default' }: NavbarProps) => {
               href="https://twitter.com"
               target="_blank"
               rel="noopener noreferrer"
-              className={`transition-all duration-300 hover:text-gold hover:scale-110 ${iconColorClasses}`}
+              className={`transition-all duration-300 hover:text-gold hover:scale-110 touch-target touch-feedback ${iconColorClasses}`}
+              aria-label="Twitter"
             >
               <Twitter size={18} />
             </a>
           </div>
           <Link
             to="/contact"
-            className={(isTransparent && !isScrolled)
+            className={`touch-target touch-feedback ${(isTransparent && !isScrolled)
               ? "border border-white/40 text-white px-6 py-2.5 text-xs tracking-[0.2em] uppercase transition-all duration-500 hover:bg-white/10 hover:border-white hover:-translate-y-0.5"
-              : "bg-gold text-white px-6 py-2.5 text-xs tracking-[0.2em] uppercase transition-all duration-500 hover:bg-gold-dark hover:-translate-y-0.5"}
+              : "bg-gold text-white px-6 py-2.5 text-xs tracking-[0.2em] uppercase transition-all duration-500 hover:bg-gold-dark hover:-translate-y-0.5"}`}
             style={!(isTransparent && !isScrolled) ? { boxShadow: '0 4px 15px rgba(166, 144, 96, 0.25)' } : {}}
           >
             Get In Touch

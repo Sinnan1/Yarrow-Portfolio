@@ -34,7 +34,7 @@ const ScrollToTop = () => {
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 w-12 h-12 bg-gold text-white rounded-full shadow-lg hover:shadow-xl hover:bg-gold-dark transition-all duration-300 flex items-center justify-center group"
+          className="fixed bottom-8 right-8 z-50 w-12 h-12 bg-gold text-white rounded-full shadow-lg hover:shadow-xl hover:bg-gold-dark transition-all duration-300 flex items-center justify-center group touch-target touch-feedback"
           aria-label="Scroll to top"
         >
           <ChevronUp
