@@ -70,7 +70,7 @@ const HorizontalScroll = () => {
         <section ref={targetRef} className="relative h-[300vh] bg-black">
             <div className="sticky top-0 flex h-screen items-center overflow-hidden">
                 <motion.div style={{ x }} className="flex gap-8 px-16">
-                    <div className="flex-shrink-0 w-[550px] flex flex-col justify-center pr-8">
+                    <div className="flex-shrink-0 w-full md:w-[550px] flex flex-col justify-center pr-8">
                         <p className="text-gold uppercase tracking-[0.3em] text-sm mb-4">Our Journey</p>
                         <h2 className="font-serif text-white text-5xl lg:text-7xl leading-tight">
                             A Decade of <br /> <span className="italic text-white/50">Excellence</span>
