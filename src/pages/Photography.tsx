@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 
 interface Wedding {
   id: string;
@@ -130,10 +130,12 @@ const Photography = () => {
 
   return (
     <div className="min-h-screen bg-cream">
-      <section className="pt-12 pb-32 px-8 lg:px-16">
+      <Navbar variant="transparent" />
+      <section className="pt-40 pb-32 px-8 lg:px-16">
         <div className="max-w-[1400px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-24 border-b border-black/10 pb-10">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-24 border-b border-gold/10 pb-10">
             <div>
+              <div className="decorative-line mb-6" />
               <p className="text-xs uppercase tracking-[0.3em] text-black/50 mb-4">Portfolio</p>
               <h1 className="font-serif text-6xl lg:text-8xl">Curated Galleries</h1>
             </div>
@@ -207,7 +209,6 @@ const Photography = () => {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   );
 };

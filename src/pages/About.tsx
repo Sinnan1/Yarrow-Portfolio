@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 const About = () => {
     const heroRef = useRef<HTMLDivElement>(null);
@@ -38,7 +37,7 @@ const About = () => {
             </section>
 
             {/* The Story - Editorial Layout */}
-            <section className="py-24 px-8 lg:px-24 bg-cream">
+            <section className="py-32 lg:py-48 px-8 lg:px-24 bg-cream">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                     <div className="lg:sticky lg:top-32">
                         <div className="decorative-line mb-8" />
@@ -61,37 +60,39 @@ const About = () => {
             </section>
 
             {/* Philosophy Section */}
-            <section className="py-20 bg-black text-cream">
+            <section className="py-32 lg:py-48 bg-cream-dark">
                 <div className="max-w-4xl mx-auto px-8 text-center">
+                    <div className="decorative-line mx-auto mb-6" />
                     <p className="text-gold uppercase tracking-[0.3em] text-xs mb-6">Our Philosophy</p>
                     <h2 className="font-serif text-4xl lg:text-6xl mb-12">"We chase the moments you didn't know were happening."</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
                         <div>
                             <h3 className="font-serif text-2xl mb-4 text-gold">Soul</h3>
-                            <p className="text-white/60 font-light">We value raw emotion over perfection. We'd rather capture a blurry laugh than a stiff pose.</p>
+                            <p className="text-black/60 font-light">We value raw emotion over perfection. We'd rather capture a blurry laugh than a stiff pose.</p>
                         </div>
                         <div>
                             <h3 className="font-serif text-2xl mb-4 text-gold">Cinema</h3>
-                            <p className="text-white/60 font-light">Your life is a movie. We film it that way. Wide angles, dramatic lighting, and thoughtful composition.</p>
+                            <p className="text-black/60 font-light">Your life is a movie. We film it that way. Wide angles, dramatic lighting, and thoughtful composition.</p>
                         </div>
                         <div>
                             <h3 className="font-serif text-2xl mb-4 text-gold">Legacy</h3>
-                            <p className="text-white/60 font-light">We aren't making content for Instagram. We are making heirlooms for your grandchildren.</p>
+                            <p className="text-black/60 font-light">We aren't making content for Instagram. We are making heirlooms for your grandchildren.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             {/* Team Grid */}
-            <section className="py-24 px-8 bg-cream">
+            <section className="py-32 lg:py-48 px-8 bg-cream">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
+                        <div className="decorative-line mx-auto mb-6" />
                         <h2 className="font-serif text-4xl lg:text-5xl">The Collective</h2>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {teamMembers.map((member, idx) => (
                             <div key={idx} className="group cursor-pointer">
-                                <div className="aspect-[3/4] overflow-hidden mb-4 relative">
+                                <div className="aspect-[3/4] overflow-hidden mb-4 relative shadow-lg">
                                     <img
                                         src={member.image}
                                         alt={member.name}
@@ -108,8 +109,6 @@ const About = () => {
                     </div>
                 </div>
             </section>
-
-            <Footer />
         </div>
     );
 };
