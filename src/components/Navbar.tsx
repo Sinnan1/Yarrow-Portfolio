@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Instagram, Facebook, Twitter, ChevronDown } from 'lucide-react';
+import { useScrollDirection } from '../hooks/useScrollDirection';
 
 interface NavbarProps {
   variant?: 'default' | 'transparent';
@@ -9,6 +10,7 @@ interface NavbarProps {
 const Navbar = ({ variant = 'default' }: NavbarProps) => {
   const [showMoreDropdown, setShowMoreDropdown] = useState(false);
   const location = useLocation();
+  const { scrollDirection, scrollY } = useScrollDirection();
 
   const navLinks = [
     { label: 'Photography', href: '/photography' },
@@ -17,23 +19,46 @@ const Navbar = ({ variant = 'default' }: NavbarProps) => {
   ];
 
   const isTransparent = variant === 'transparent';
+  const isScrolled = scrollY > 50;
+  
+  // Hide navbar when scrolling down past threshold, show when scrolling up
+  const shouldHide = scrollDirection === 'down' && scrollY > 150;
+  
+  // Background changes based on scroll and variant
+  const getNavClasses = () => {
+    if (isTransparent && !isScrolled) {
+      return "absolute top-0 left-0 right-0 z-50 bg-transparent py-6";
+    }
+    if (isTransparent && isScrolled) {
+      return "fixed top-0 left-0 right-0 z-50 bg-cream/95 backdrop-blur-md shadow-sm py-5";
+    }
+    return "bg-cream py-6";
+  };
 
-  const navClasses = isTransparent
-    ? "absolute top-0 left-0 right-0 z-50 bg-transparent py-6"
-    : "bg-cream py-6";
+  // Text colors based on variant and scroll state
+  const linkColorClasses = (isTransparent && !isScrolled) 
+    ? "text-white/90 hover:text-white" 
+    : "text-black/80 hover:text-gold";
+    
+  const logoColorClasses = (isTransparent && !isScrolled)
+    ? "text-white group-hover:text-gold"
+    : "text-black group-hover:text-gold";
+    
+  const iconColorClasses = (isTransparent && !isScrolled)
+    ? "text-white/70"
+    : "text-black/60";
 
   const linkBaseClasses = "text-sm tracking-[0.1em] uppercase transition-all duration-300 underline-elegant";
-  const linkColorClasses = isTransparent ? "text-white/90 hover:text-white" : "text-black/80 hover:text-gold";
 
   return (
-    <nav className={navClasses}>
+    <nav className={`${getNavClasses()} transition-transform duration-500 ${shouldHide ? '-translate-y-full' : 'translate-y-0'}`}>
       <div className="w-full px-8 lg:px-16 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex flex-col leading-none group">
-          <span className={`font-serif text-xl lg:text-2xl tracking-[0.2em] uppercase transition-all duration-500 ${isTransparent ? 'text-white group-hover:text-gold' : 'text-black group-hover:text-gold'}`}>
+          <span className={`font-serif text-xl lg:text-2xl tracking-[0.2em] uppercase transition-all duration-500 ${logoColorClasses}`}>
             Yarrow
           </span>
-          <span className={`font-serif text-xl lg:text-2xl tracking-[0.2em] uppercase transition-all duration-500 ${isTransparent ? 'text-white group-hover:text-gold' : 'text-black group-hover:text-gold'}`}>
+          <span className={`font-serif text-xl lg:text-2xl tracking-[0.2em] uppercase transition-all duration-500 ${logoColorClasses}`}>
             Weddings
           </span>
         </Link>
@@ -99,7 +124,7 @@ const Navbar = ({ variant = 'default' }: NavbarProps) => {
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
-              className={`transition-all duration-300 hover:text-gold hover:scale-110 ${isTransparent ? 'text-white/70' : 'text-black/60'}`}
+              className={`transition-all duration-300 hover:text-gold hover:scale-110 ${iconColorClasses}`}
             >
               <Instagram size={18} />
             </a>
@@ -107,7 +132,7 @@ const Navbar = ({ variant = 'default' }: NavbarProps) => {
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
-              className={`transition-all duration-300 hover:text-gold hover:scale-110 ${isTransparent ? 'text-white/70' : 'text-black/60'}`}
+              className={`transition-all duration-300 hover:text-gold hover:scale-110 ${iconColorClasses}`}
             >
               <Facebook size={18} />
             </a>
@@ -115,17 +140,17 @@ const Navbar = ({ variant = 'default' }: NavbarProps) => {
               href="https://twitter.com"
               target="_blank"
               rel="noopener noreferrer"
-              className={`transition-all duration-300 hover:text-gold hover:scale-110 ${isTransparent ? 'text-white/70' : 'text-black/60'}`}
+              className={`transition-all duration-300 hover:text-gold hover:scale-110 ${iconColorClasses}`}
             >
               <Twitter size={18} />
             </a>
           </div>
           <Link
             to="/contact"
-            className={isTransparent 
+            className={(isTransparent && !isScrolled)
               ? "border border-white/40 text-white px-6 py-2.5 text-xs tracking-[0.2em] uppercase transition-all duration-500 hover:bg-white/10 hover:border-white hover:-translate-y-0.5"
               : "bg-gold text-white px-6 py-2.5 text-xs tracking-[0.2em] uppercase transition-all duration-500 hover:bg-gold-dark hover:-translate-y-0.5"}
-            style={!isTransparent ? { boxShadow: '0 4px 15px rgba(166, 144, 96, 0.25)' } : {}}
+            style={!(isTransparent && !isScrolled) ? { boxShadow: '0 4px 15px rgba(166, 144, 96, 0.25)' } : {}}
           >
             Get In Touch
           </Link>

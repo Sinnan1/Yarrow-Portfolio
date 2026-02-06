@@ -171,9 +171,6 @@ const Home = () => {
       {/* Featured Work Section - Replaces Gallery Grid */}
       <FeaturedWork />
 
-      {/* Signature Section 2: Video Portal */}
-      <VideoPortal />
-
       {/* Featured Weddings Section */}
       <section ref={featuredRef} id="featured" className="py-24 lg:py-32 px-8 lg:px-16 bg-cream">
         <div className="max-w-7xl mx-auto">
@@ -219,6 +216,9 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Testimonials Section - Moved up for better flow */}
+      <Testimonials />
+
       {/* Soul + Cinema Section */}
       <section className="relative bg-cream">
         <div className="relative py-28 lg:py-36">
@@ -244,6 +244,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Video Portal - Moved here to group with films */}
+      <VideoPortal />
 
       {/* Award Winning Films Section */}
       <section ref={filmsRef} id="films" className="py-24 lg:py-32 px-8 lg:px-16 bg-cream">
@@ -373,10 +376,7 @@ const Home = () => {
       {/* Signature Section 3: Magazine Layout */}
       <MagazineLayout />
 
-      {/* Testimonials Section */}
-      <Testimonials />
-
-      {/* Our Approach Section */}
+      {/* Our Approach Section - Moved here for better flow */}
       <OurApproach />
 
       {/* Ibtda Section */}
