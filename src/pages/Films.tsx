@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Play, ArrowDown } from 'lucide-react';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
 interface Film {
   id: string;
@@ -62,7 +61,6 @@ const Films = () => {
       date: 'Mumbai',
       description: 'Some places hold memories and some hold dreams. This home was both.',
       thumbnail: '/story-3.jpg',
-      categories: ['New Age Modern']
     },
     {
       id: '6',
@@ -71,9 +69,8 @@ const Films = () => {
       date: 'Korea / India',
       description: 'Aerin and Rahul\'s story took us on a journey across two countries and cultures.',
       thumbnail: '/story-4.jpg',
-      categories: ['Classic Story Telling']
     },
-  ] as Film[]; // Explicit cast to allow custom properties if needed, though interface matches
+  ];
 
   const filteredFilms =
     activeFilter === 'All'
@@ -81,33 +78,34 @@ const Films = () => {
       : films.filter((f) => f.category === activeFilter);
 
   return (
-    <div className="min-h-screen bg-black text-cream">
+    <div className="min-h-screen bg-cream">
       <Navbar variant="transparent" />
 
       {/* Header Section */}
       <section className="pt-40 pb-20 px-8 lg:px-16 relative overflow-hidden">
         <div className={`max-w-[1400px] mx-auto text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="decorative-line mx-auto mb-6" />
           <p className="text-gold uppercase tracking-[0.4em] text-xs mb-6">The Screening Room</p>
-          <h1 className="font-serif text-5xl lg:text-8xl text-white mb-8">Cinema & Soul</h1>
-          <p className="max-w-xl mx-auto text-white/60 font-light leading-relaxed">
+          <h1 className="font-serif text-5xl lg:text-8xl mb-8">Cinema & Soul</h1>
+          <p className="max-w-xl mx-auto text-black/60 font-light leading-relaxed">
             A collection of our finest films. Each piece is a labor of love, crafted not just to document a day, but to preserve a feeling forever.
           </p>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/30 animate-bounce">
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-black/30 animate-bounce">
           <ArrowDown size={20} />
         </div>
       </section>
 
       {/* Filter Bar */}
-      <div className="sticky top-0 z-40 bg-black/90 backdrop-blur-md py-6 border-b border-white/10 px-8">
+      <div className="sticky top-0 z-40 bg-cream/95 backdrop-blur-md py-6 border-b border-gold/10 px-8">
         <div className="max-w-[1400px] mx-auto flex overflow-x-auto gap-8 justify-center no-scrollbar">
           {filters.map((filter) => (
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`text-xs uppercase tracking-widest whitespace-nowrap transition-all duration-300 ${activeFilter === filter ? 'text-gold scale-105' : 'text-white/40 hover:text-white'
+              className={`text-xs uppercase tracking-widest whitespace-nowrap transition-all duration-300 ${activeFilter === filter ? 'text-gold scale-105' : 'text-black/40 hover:text-black'
                 }`}
             >
               {filter}
@@ -117,7 +115,7 @@ const Films = () => {
       </div>
 
       {/* Films List - Single Column Immersive */}
-      <section className="py-20 px-4 lg:px-16">
+      <section className="py-32 lg:py-48 px-8 lg:px-16">
         <div className="max-w-5xl mx-auto flex flex-col gap-24 lg:gap-32">
           {filteredFilms.map((film, index) => (
             <div
@@ -126,23 +124,23 @@ const Films = () => {
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               {/* Film Number */}
-              <div className="hidden lg:block absolute -left-20 top-0 text-white/10 font-serif text-6xl">
+              <div className="hidden lg:block absolute -left-20 top-0 text-black/10 font-serif text-6xl">
                 {String(index + 1).padStart(2, '0')}
               </div>
 
               {/* Video Card */}
-              <div className="relative aspect-video w-full overflow-hidden mb-8 border border-white/10">
+              <div className="relative aspect-video w-full overflow-hidden mb-8 shadow-lg">
                 <img
                   src={film.thumbnail}
                   alt={film.title}
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-all duration-500" />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500" />
 
                 {/* Play Button */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 border border-white/30 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:scale-110 group-hover:border-gold group-hover:bg-gold/10 transition-all duration-500">
-                    <Play className="w-6 h-6 text-white ml-1 group-hover:text-gold transition-colors" />
+                  <div className="w-20 h-20 lg:w-24 lg:h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-110 group-hover:bg-gold/80 transition-all duration-500">
+                    <Play className="w-8 h-8 lg:w-10 lg:h-10 text-white fill-white ml-1" />
                   </div>
                 </div>
               </div>
@@ -150,15 +148,15 @@ const Films = () => {
               {/* Info */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                 <div className="lg:col-span-8">
-                  <h3 className="font-serif text-3xl lg:text-4xl text-white mb-2 group-hover:text-gold transition-colors">{film.title}</h3>
-                  <div className="flex items-center gap-4 text-xs text-white/40 uppercase tracking-wider mb-4">
+                  <h3 className="font-serif text-3xl lg:text-4xl mb-2 group-hover:text-gold transition-colors">{film.title}</h3>
+                  <div className="flex items-center gap-4 text-xs text-black/40 uppercase tracking-wider mb-4">
                     <span>{film.date}</span>
                     <span className="w-1 h-1 bg-gold rounded-full" />
                     <span>{film.category}</span>
                   </div>
                 </div>
                 <div className="lg:col-span-4">
-                  <p className="text-white/60 font-light leading-relaxed text-sm">
+                  <p className="text-black/60 font-light leading-relaxed text-sm">
                     {film.description}
                   </p>
                 </div>
@@ -167,8 +165,6 @@ const Films = () => {
           ))}
         </div>
       </section>
-
-      <Footer />
     </div>
   );
 };

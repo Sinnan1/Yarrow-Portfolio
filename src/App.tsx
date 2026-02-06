@@ -20,7 +20,7 @@ function App() {
       <CustomCursor />
       <ScrollProgress />
       <ScrollToTop />
-      {!['/', '/about', '/films'].includes(location.pathname) && <Navbar />}
+      {!['/', '/about', '/films', '/photography'].includes(location.pathname) && !location.pathname.startsWith('/photography/') && <Navbar />}
       <main>
         <Routes>
           <Route path="/" element={<Home />} />

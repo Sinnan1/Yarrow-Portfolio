@@ -47,6 +47,7 @@ const Contact = () => {
           <div className="absolute inset-0 bg-black/10" />
 
           <div className={`absolute inset-0 flex flex-col justify-center px-12 lg:px-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className="decorative-line bg-white/30 mb-6" />
             <p className="text-white uppercase tracking-[0.3em] text-xs mb-6 drop-shadow-md">The Beginning</p>
             <h1 className="font-serif text-5xl lg:text-7xl text-white leading-none mb-8 drop-shadow-lg">
               Let's Start <br /> Your Story.
@@ -71,6 +72,7 @@ const Contact = () => {
         <div className="w-full lg:w-1/2 bg-cream px-8 py-16 lg:px-24 lg:py-24 flex items-center">
           <div className={`w-full max-w-xl mx-auto transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
 
+            <div className="decorative-line mb-10" />
             <form onSubmit={handleSubmit} className="space-y-12">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div className="group">
