@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const MagazineLayout = () => {
     return (
-        <section className="py-24 px-4 bg-cream overflow-hidden">
+        <section className="py-32 lg:py-48 px-4 bg-cream overflow-hidden">
             <div className="max-w-[1400px] mx-auto">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-end mb-24 px-4 lg:px-12 border-b border-black/10 pb-12">

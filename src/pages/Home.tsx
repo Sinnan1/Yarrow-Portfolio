@@ -152,7 +152,7 @@ const Home = () => {
       <HorizontalScroll />
 
       {/* Media Logos Section */}
-      <section className="py-16 lg:py-20 px-8 lg:px-16 bg-cream border-y border-gold/10">
+      <section className="py-20 lg:py-24 px-8 lg:px-16 bg-cream border-y border-gold/10">
         <div className="max-w-6xl mx-auto">
           <p className="text-center text-xs tracking-[0.3em] uppercase text-black/40 mb-8">As Featured In</p>
           <div className="flex flex-wrap justify-center items-center gap-10 lg:gap-20">
@@ -172,7 +172,7 @@ const Home = () => {
       <FeaturedWork />
 
       {/* Featured Weddings Section */}
-      <section ref={featuredRef} id="featured" className="py-24 lg:py-32 px-8 lg:px-16 bg-cream">
+      <section ref={featuredRef} id="featured" className="py-32 lg:py-48 px-8 lg:px-16 bg-cream">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="decorative-line mx-auto mb-6" />
@@ -221,7 +221,7 @@ const Home = () => {
 
       {/* Soul + Cinema Section */}
       <section className="relative bg-cream">
-        <div className="relative py-28 lg:py-36">
+        <div className="relative py-32 lg:py-48">
           <div className="absolute inset-0">
             <img
               src="/soul-cinema-bg.jpg"
@@ -249,7 +249,7 @@ const Home = () => {
       <VideoPortal />
 
       {/* Award Winning Films Section */}
-      <section ref={filmsRef} id="films" className="py-24 lg:py-32 px-8 lg:px-16 bg-cream">
+      <section ref={filmsRef} id="films" className="py-32 lg:py-48 px-8 lg:px-16 bg-cream">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <div className="decorative-line mx-auto mb-6" />
@@ -436,7 +436,7 @@ const Home = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-24 lg:py-32 px-8 lg:px-16 bg-cream">
+      <section className="py-32 lg:py-48 px-8 lg:px-16 bg-cream">
         <div className="max-w-3xl mx-auto text-center">
           <div className="decorative-line mx-auto mb-8" />
           <h3 className="font-serif text-3xl lg:text-4xl mb-4">Let&apos;s Create Magic Together</h3>
