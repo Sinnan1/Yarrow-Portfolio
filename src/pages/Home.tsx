@@ -95,20 +95,20 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section ref={aboutRef} id="about" className="py-24 lg:py-32 px-8 lg:px-16 bg-cream overflow-hidden relative">
+      <section ref={aboutRef} id="about" className="py-32 lg:py-48 px-8 lg:px-16 bg-cream overflow-hidden relative">
         <div className="max-w-7xl mx-auto">
           <div
-            className={`text-center mb-16 lg:mb-20 transition-all duration-1000 ${isVisible.about ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            className={`text-center mb-20 lg:mb-28 transition-all duration-1000 ${isVisible.about ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
           >
-            <div className="decorative-line mx-auto mb-8" />
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight">
+            <div className="decorative-line mx-auto mb-10" />
+            <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight">
               <span className="block italic font-light">A Modern Approach</span>
-              <span className="block not-italic mt-3 text-gold">to an Age Old Tradition</span>
+              <span className="block not-italic mt-4 text-gold">to an Age Old Tradition</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             <div
               className={`lg:col-span-4 transition-all duration-1000 delay-200 ${isVisible.about ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                 }`}
