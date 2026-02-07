@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 const Hero = () => {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const opacity = useTransform(scrollY, [0, 800], [1, 0.2]);
 
   return (
     <div className="absolute inset-0">
