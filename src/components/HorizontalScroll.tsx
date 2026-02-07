@@ -94,6 +94,7 @@ const HorizontalScroll = () => {
                         <div
                             key={item.id}
                             role="listitem"
+                            aria-label={`${item.year} ${item.title}`}
                             className="group relative flex-shrink-0 overflow-hidden bg-cream/5 w-[80vw] h-[50vh] snap-start"
                         >
                             <img
