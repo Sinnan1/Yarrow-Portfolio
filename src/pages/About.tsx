@@ -37,7 +37,7 @@ const About = () => {
             </section>
 
             {/* The Story - Editorial Layout */}
-            <section className="py-32 lg:py-48 px-8 lg:px-24 bg-cream">
+            <section className="py-16 md:py-24 lg:py-32 px-4 sm:px-8 lg:px-16 bg-cream">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                     <div className="lg:sticky lg:top-32">
                         <div className="decorative-line mb-8" />
@@ -60,7 +60,7 @@ const About = () => {
             </section>
 
             {/* Philosophy Section */}
-            <section className="py-32 lg:py-48 bg-cream-dark">
+            <section className="py-16 md:py-24 lg:py-32 bg-cream-dark">
                 <div className="max-w-4xl mx-auto px-8 text-center">
                     <div className="decorative-line mx-auto mb-6" />
                     <p className="text-gold uppercase tracking-[0.3em] text-xs mb-6">Our Philosophy</p>
@@ -83,7 +83,7 @@ const About = () => {
             </section>
 
             {/* Team Grid */}
-            <section className="py-32 lg:py-48 px-8 bg-cream">
+            <section className="py-16 md:py-24 lg:py-32 px-4 sm:px-8 bg-cream">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
                         <div className="decorative-line mx-auto mb-6" />

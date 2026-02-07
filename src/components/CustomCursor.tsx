@@ -4,8 +4,29 @@ import { motion } from 'framer-motion';
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  // Detect touch devices on mount
+  useEffect(() => {
+    const checkTouchDevice = () => {
+      // Check if device has a coarse pointer (touch) or no fine pointer (mouse)
+      const hasTouchScreen = window.matchMedia('(pointer: coarse)').matches;
+      const hasNoMouse = !window.matchMedia('(pointer: fine)').matches;
+      setIsTouchDevice(hasTouchScreen || hasNoMouse);
+    };
+
+    checkTouchDevice();
+
+    // Listen for changes (e.g., connecting a mouse to tablet)
+    const mediaQuery = window.matchMedia('(pointer: fine)');
+    mediaQuery.addEventListener('change', checkTouchDevice);
+
+    return () => mediaQuery.removeEventListener('change', checkTouchDevice);
+  }, []);
 
   useEffect(() => {
+    // Skip mouse tracking on touch devices
+    if (isTouchDevice) return;
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -36,7 +57,10 @@ const CustomCursor = () => {
       document.removeEventListener('mouseover', handleMouseOver);
       document.removeEventListener('mouseout', handleMouseOut);
     };
-  }, []);
+  }, [isTouchDevice]);
+
+  // Don't render cursor on touch devices
+  if (isTouchDevice) return null;
 
   return (
     <>

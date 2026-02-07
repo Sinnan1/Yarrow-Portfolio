@@ -58,26 +58,26 @@ const Testimonials = () => {
   }, [testimonials.length]);
 
   return (
-    <section className="py-32 lg:py-48 px-8 lg:px-16 bg-warm-white overflow-hidden">
+    <section className="py-20 md:py-32 lg:py-20 px-4 sm:px-8 lg:px-16 bg-warm-white overflow-hidden">
       <div className="max-w-5xl mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20 lg:mb-28"
+          className="text-center mb-10 sm:mb-16 lg:mb-24"
         >
-          <p className="text-xs tracking-[0.3em] uppercase text-black/40 mb-6">
+          <p className="text-xs tracking-[0.3em] uppercase text-black/40 mb-4 sm:mb-6">
             Client Testimonials
           </p>
-          <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-tight mb-4">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-4">
             <span className="italic">Love</span> Stories
           </h2>
-          <div className="decorative-line mx-auto mt-8" />
+          <div className="decorative-line mx-auto mt-6 sm:mt-8" />
         </motion.div>
 
         {/* Testimonial Carousel */}
-        <div className="relative min-h-[400px] lg:min-h-[450px]">
+        <div className="relative min-h-[280px] sm:min-h-[350px] lg:min-h-[400px]">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
@@ -97,17 +97,17 @@ const Testimonials = () => {
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.3, duration: 0.5 }}
                 >
-                  <Quote className="w-12 h-12 text-gold/30 mb-8" />
+                  <Quote className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-gold/30 mb-4 sm:mb-6 lg:mb-8" />
                 </motion.div>
 
                 {/* Quote Text */}
-                <blockquote className="font-serif text-2xl md:text-3xl lg:text-4xl leading-relaxed text-black/90 mb-12 italic max-w-4xl">
+                <blockquote className="font-serif text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl leading-relaxed text-black/90 mb-6 sm:mb-8 lg:mb-10 italic max-w-4xl px-2">
                   "{testimonial.quote}"
                 </blockquote>
 
                 {/* Client Info */}
-                <div className="space-y-2">
-                  <p className="font-serif text-xl lg:text-2xl text-gold">
+                <div className="space-y-1 sm:space-y-2">
+                  <p className="font-serif text-lg sm:text-xl lg:text-2xl text-gold">
                     {testimonial.client}
                   </p>
                   <p className="text-sm tracking-wider text-black/50">
@@ -128,11 +128,10 @@ const Testimonials = () => {
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                activeIndex === index
-                  ? 'bg-gold w-8'
-                  : 'bg-black/20 hover:bg-black/40'
-              }`}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${activeIndex === index
+                ? 'bg-gold w-8'
+                : 'bg-black/20 hover:bg-black/40'
+                }`}
               aria-label={`View testimonial ${index + 1}`}
             />
           ))}

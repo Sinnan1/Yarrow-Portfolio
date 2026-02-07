@@ -68,17 +68,17 @@ const FeaturedWork = () => {
   ];
 
   return (
-    <section className="py-32 lg:py-48 px-4 lg:px-8 bg-cream overflow-hidden">
+    <section className="py-20 md:py-32 lg:py-0 px-4 sm:px-8 lg:px-8 bg-cream overflow-hidden">
       <div className="max-w-[1600px] mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20 lg:mb-32"
+          className="text-center mb-20 lg:mb-20"
         >
           <p className="text-xs tracking-[0.3em] uppercase text-black/40 mb-6">Selected Works</p>
-          <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight">
             Recent <span className="italic text-gold">Highlights</span>
           </h2>
           <div className="decorative-line mx-auto mt-8" />
@@ -103,14 +103,10 @@ const FeaturedWork = () => {
                 className="w-full h-full"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-              
-              {/* Hover Caption */}
+
+              {/* Caption - Always visible on mobile, hover on desktop */}
               <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-12">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileHover={{ opacity: 1, y: 0 }}
-                  className="opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                >
+                <div className="opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
                   <p className="text-xs tracking-[0.3em] uppercase text-white/70 mb-2">
                     {featuredItems[0].category}
                   </p>
@@ -121,7 +117,7 @@ const FeaturedWork = () => {
                     <span className="text-sm tracking-wider">View Gallery</span>
                     <ArrowUpRight size={18} />
                   </div>
-                </motion.div>
+                </div>
               </div>
             </Link>
           </motion.div>
@@ -143,9 +139,9 @@ const FeaturedWork = () => {
                 className="w-full h-full"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-50 group-hover:opacity-30 transition-opacity duration-500" />
-              
+
               <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-8">
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
                   <p className="text-xs tracking-[0.3em] uppercase text-white/70 mb-1">
                     {featuredItems[1].category}
                   </p>
@@ -166,9 +162,9 @@ const FeaturedWork = () => {
                 className="w-full h-full"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-50 group-hover:opacity-30 transition-opacity duration-500" />
-              
+
               <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-8">
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
                   <p className="text-xs tracking-[0.3em] uppercase text-white/70 mb-1">
                     {featuredItems[2].category}
                   </p>
@@ -197,9 +193,9 @@ const FeaturedWork = () => {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-50 group-hover:opacity-30 transition-opacity duration-500" />
-              
+
               <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-8">
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
                   <p className="text-xs tracking-[0.3em] uppercase text-white/70 mb-1">
                     {featuredItems[3].category}
                   </p>
@@ -227,9 +223,9 @@ const FeaturedWork = () => {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-50 group-hover:opacity-30 transition-opacity duration-500" />
-              
+
               <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-8">
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
                   <p className="text-xs tracking-[0.3em] uppercase text-white/70 mb-1">
                     {featuredItems[4].category}
                   </p>
@@ -257,9 +253,9 @@ const FeaturedWork = () => {
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-50 group-hover:opacity-30 transition-opacity duration-500" />
-              
+
               <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-8">
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500">
                   <p className="text-xs tracking-[0.3em] uppercase text-white/70 mb-1">
                     {featuredItems[5].category}
                   </p>

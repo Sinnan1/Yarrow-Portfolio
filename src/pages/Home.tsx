@@ -82,16 +82,16 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section ref={aboutRef} id="about" className="py-32 lg:py-48 px-8 lg:px-16 bg-cream overflow-hidden relative">
+      <section ref={aboutRef} id="about" className="py-16 md:py-24 lg:py-20 px-4 sm:px-8 lg:px-16 bg-cream overflow-hidden relative">
         <div className="max-w-7xl mx-auto">
           <div
             className={`text-center mb-20 lg:mb-28 transition-all duration-1000 ${isVisible.about ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
           >
             <div className="decorative-line mx-auto mb-10" />
-            <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight">
               <span className="block italic font-light">A Modern Approach</span>
-              <span className="block not-italic mt-4 text-gold">to an Age Old Tradition</span>
+              <span className="block not-italic mt-2 sm:mt-4 text-gold">to an Age Old Tradition</span>
             </h2>
           </div>
 
@@ -152,7 +152,7 @@ const Home = () => {
       <HorizontalScroll />
 
       {/* Media Logos Section */}
-      <section className="py-20 lg:py-24 px-8 lg:px-16 bg-cream border-y border-gold/10">
+      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-8 lg:px-16 bg-cream border-y border-gold/10">
         <div className="max-w-6xl mx-auto">
           <p className="text-center text-xs tracking-[0.3em] uppercase text-black/40 mb-8">As Featured In</p>
           <div className="flex flex-wrap justify-center items-center gap-10 lg:gap-20">
@@ -172,7 +172,7 @@ const Home = () => {
       <FeaturedWork />
 
       {/* Featured Weddings Section */}
-      <section ref={featuredRef} id="featured" className="py-32 lg:py-48 px-8 lg:px-16 bg-cream">
+      <section ref={featuredRef} id="featured" className="py-16 md:py-24 lg:py-20 px-4 sm:px-8 lg:px-16 bg-cream">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <div className="decorative-line mx-auto mb-6" />
@@ -231,9 +231,9 @@ const Home = () => {
             <div className="absolute inset-0 bg-black/60" />
           </div>
 
-          <div className="relative z-20 max-w-4xl mx-auto px-8 lg:px-16 text-center">
+          <div className="relative z-20 max-w-4xl mx-auto px-4 sm:px-8 lg:px-16 text-center">
             <p className="text-xs tracking-[0.3em] uppercase text-white/60 mb-4">Our Philosophy</p>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-6">Soul + Cinema</h2>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-6">Soul + Cinema</h2>
             <div className="decorative-line mx-auto mb-6 bg-white/30" />
             <p className="text-white/80 text-sm lg:text-base leading-relaxed max-w-2xl mx-auto font-light">
               Every wedding is unique and so are our films. For past 8 years Yarrow Weddings has set new
@@ -249,7 +249,7 @@ const Home = () => {
       <VideoPortal />
 
       {/* Award Winning Films Section */}
-      <section ref={filmsRef} id="films" className="py-32 lg:py-48 px-8 lg:px-16 bg-cream">
+      <section ref={filmsRef} id="films" className="py-16 md:py-24 lg:py-32 px-4 sm:px-8 lg:px-16 bg-cream">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <div className="decorative-line mx-auto mb-6" />
@@ -326,7 +326,7 @@ const Home = () => {
       </section>
 
       {/* Wedding Stories Grid */}
-      <section ref={storiesRef} id="stories" className="py-24 lg:py-32 px-8 lg:px-16 bg-cream">
+      <section ref={storiesRef} id="stories" className="py-16 md:py-24 lg:py-32 px-4 sm:px-8 lg:px-16 bg-cream">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <div className="decorative-line mx-auto mb-6" />
@@ -436,7 +436,7 @@ const Home = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-32 lg:py-48 px-8 lg:px-16 bg-cream">
+      <section className="py-16 md:py-24 lg:py-32 px-4 sm:px-8 lg:px-16 bg-cream">
         <div className="max-w-3xl mx-auto text-center">
           <div className="decorative-line mx-auto mb-8" />
           <h3 className="font-serif text-3xl lg:text-4xl mb-4">Let&apos;s Create Magic Together</h3>

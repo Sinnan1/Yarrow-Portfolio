@@ -41,30 +41,30 @@ const OurApproach = () => {
   ];
 
   return (
-    <section className="py-32 lg:py-48 px-8 lg:px-16 bg-cream overflow-hidden">
+    <section className="py-12 md:py-24 lg:py-20 px-4 sm:px-8 lg:px-16 bg-cream overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="max-w-3xl mx-auto text-center mb-24 lg:mb-32"
+          className="max-w-3xl mx-auto text-center mb-10 sm:mb-16 md:mb-20 lg:mb-28"
         >
-          <p className="text-xs tracking-[0.3em] uppercase text-black/40 mb-6">
+          <p className="text-xs tracking-[0.3em] uppercase text-black/40 mb-4 sm:mb-6">
             Our Philosophy
           </p>
-          <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-tight mb-8">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6 sm:mb-8">
             The <span className="italic text-gold">Yarrow</span> Approach
           </h2>
-          <div className="decorative-line mx-auto mb-8" />
-          <p className="text-base lg:text-lg leading-relaxed text-black/70 font-light">
-            We believe wedding photography is more than capturing moments—it's about preserving emotions, 
+          <div className="decorative-line mx-auto mb-4 sm:mb-6 lg:mb-8" />
+          <p className="text-sm sm:text-base lg:text-lg leading-relaxed text-black/70 font-light">
+            We believe wedding photography is more than capturing moments—it's about preserving emotions,
             telling stories, and creating art that transcends time.
           </p>
         </motion.div>
 
         {/* Process Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16">
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
@@ -79,10 +79,10 @@ const OurApproach = () => {
                   {/* Number & Icon */}
                   <div className="flex-shrink-0">
                     <div className="relative">
-                      <span className="font-serif text-6xl lg:text-7xl text-gold/20 absolute -top-4 -left-2">
+                      <span className="font-serif text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-gold/20 absolute -top-2 sm:-top-4 -left-1 sm:-left-2">
                         {step.number}
                       </span>
-                      <div className="relative z-10 w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors duration-500 mt-6">
+                      <div className="relative z-10 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full bg-gold/10 flex items-center justify-center group-hover:bg-gold/20 transition-colors duration-500 mt-4 sm:mt-6">
                         <Icon className="w-7 h-7 text-gold" />
                       </div>
                     </div>
@@ -90,7 +90,7 @@ const OurApproach = () => {
 
                   {/* Content */}
                   <div className="pt-6">
-                    <h3 className="font-serif text-3xl lg:text-4xl mb-4 group-hover:text-gold transition-colors duration-300">
+                    <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl mb-3 sm:mb-4 group-hover:text-gold transition-colors duration-300">
                       {step.title}
                     </h3>
                     <p className="text-black/70 leading-relaxed font-light">
