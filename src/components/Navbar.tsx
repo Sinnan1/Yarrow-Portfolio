@@ -107,7 +107,7 @@ const Navbar = ({ variant = 'default' }: NavbarProps) => {
                   Press
                 </Link>
                 <Link
-                  to="#"
+                  to="/faq"
                   className="block px-5 py-2.5 text-sm text-black/70 hover:text-gold hover:bg-cream/50 transition-all duration-300"
                 >
                   FAQ
