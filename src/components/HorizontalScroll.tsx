@@ -12,8 +12,7 @@ const HorizontalScroll = () => {
     const handleMobileKeyDown = (event: KeyboardEvent<HTMLUListElement>) => {
         if (event.key === "ArrowRight") {
             event.currentTarget.scrollBy({ left: SCROLL_DISTANCE, behavior: "smooth" });
-        }
-        if (event.key === "ArrowLeft") {
+        } else if (event.key === "ArrowLeft") {
             event.currentTarget.scrollBy({ left: -SCROLL_DISTANCE, behavior: "smooth" });
         }
     };
@@ -84,32 +83,36 @@ const HorizontalScroll = () => {
                         A Decade of <br /> <span className="italic text-white/50">Excellence</span>
                     </h2>
                 </div>
-                <ul
-                    className="mt-10 flex gap-6 overflow-x-auto px-6 pb-6 snap-x snap-mandatory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                    tabIndex={0}
-                    aria-label="Our Journey timeline"
-                    onKeyDown={handleMobileKeyDown}
-                >
-                    {items.map((item) => (
-                        <li
-                            key={item.id}
-                            aria-label={`${item.year} ${item.title}`}
-                            className="group relative flex-shrink-0 overflow-hidden bg-cream/5 w-[80vw] h-[50vh] snap-start"
-                        >
-                            <img
-                                src={item.img}
-                                alt={item.title}
-                                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/0 transition-colors duration-700" />
-                            <div className="absolute bottom-0 left-0 p-6 w-full bg-gradient-to-t from-black/90 to-transparent">
-                                <span className="text-gold font-serif italic text-2xl mb-2 block">{item.year}</span>
-                                <h3 className="text-white font-serif text-2xl mb-2">{item.title}</h3>
-                                <p className="text-white/60 text-sm font-light">{item.desc}</p>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+                <div className="relative mt-10">
+                    <ul
+                        className="flex gap-6 overflow-x-auto px-6 pb-6 snap-x snap-mandatory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                        tabIndex={0}
+                        aria-label="Our Journey timeline"
+                        onKeyDown={handleMobileKeyDown}
+                    >
+                        {items.map((item) => (
+                            <li
+                                key={item.id}
+                                aria-label={`${item.year} ${item.title}`}
+                                className="group relative flex-shrink-0 overflow-hidden bg-cream/5 w-[80vw] h-[50vh] snap-start"
+                            >
+                                <img
+                                    src={item.img}
+                                    alt={item.title}
+                                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/0 transition-colors duration-700" />
+                                <div className="absolute bottom-0 left-0 p-6 w-full bg-gradient-to-t from-black/90 to-transparent">
+                                    <span className="text-gold font-serif italic text-2xl mb-2 block">{item.year}</span>
+                                    <h3 className="text-white font-serif text-2xl mb-2">{item.title}</h3>
+                                    <p className="text-white/60 text-sm font-light">{item.desc}</p>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                    <div className="pointer-events-none absolute inset-y-0 left-0 w-6 bg-gradient-to-r from-black to-transparent" />
+                    <div className="pointer-events-none absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-black to-transparent" />
+                </div>
             </section>
             <section ref={targetRef} className="relative hidden md:block h-[300vh] bg-black">
                 <div className="sticky top-0 flex h-screen items-center overflow-hidden">
