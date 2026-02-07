@@ -12,12 +12,22 @@ const HorizontalScroll = () => {
 
     const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
     const handleMobileKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+        const listElement = listRef.current;
+        if (!listElement) {
+            return;
+        }
         if (event.key === "ArrowRight") {
             event.preventDefault();
-            listRef.current?.scrollBy({ left: SCROLL_DISTANCE, behavior: "smooth" });
+            listElement.scrollBy({ left: SCROLL_DISTANCE, behavior: "smooth" });
         } else if (event.key === "ArrowLeft") {
             event.preventDefault();
-            listRef.current?.scrollBy({ left: -SCROLL_DISTANCE, behavior: "smooth" });
+            listElement.scrollBy({ left: -SCROLL_DISTANCE, behavior: "smooth" });
+        } else if (event.key === "Home") {
+            event.preventDefault();
+            listElement.scrollTo({ left: 0, behavior: "smooth" });
+        } else if (event.key === "End") {
+            event.preventDefault();
+            listElement.scrollTo({ left: listElement.scrollWidth, behavior: "smooth" });
         }
     };
 
@@ -103,7 +113,8 @@ const HorizontalScroll = () => {
                         {items.map((item) => (
                             <li
                                 key={item.id}
-                                className="group relative flex-shrink-0 overflow-hidden bg-cream/5 w-[80vw] h-[50vh] snap-start"
+                                tabIndex={0}
+                                className="group relative flex-shrink-0 overflow-hidden bg-cream/5 w-[80vw] h-[50vh] snap-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                             >
                                 <img
                                     src={item.img}
