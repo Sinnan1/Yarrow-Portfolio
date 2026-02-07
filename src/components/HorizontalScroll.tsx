@@ -11,8 +11,10 @@ const HorizontalScroll = () => {
     const SCROLL_DISTANCE = 240;
     const handleMobileKeyDown = (event: KeyboardEvent<HTMLUListElement>) => {
         if (event.key === "ArrowRight") {
+            event.preventDefault();
             event.currentTarget.scrollBy({ left: SCROLL_DISTANCE, behavior: "smooth" });
         } else if (event.key === "ArrowLeft") {
+            event.preventDefault();
             event.currentTarget.scrollBy({ left: -SCROLL_DISTANCE, behavior: "smooth" });
         }
     };
@@ -83,11 +85,10 @@ const HorizontalScroll = () => {
                         A Decade of <br /> <span className="italic text-white/50">Excellence</span>
                     </h2>
                 </div>
-                <div className="relative mt-10">
+                <div className="relative mt-10" role="region" aria-label="Our Journey timeline">
                     <ul
                         className="flex gap-6 overflow-x-auto px-6 pb-6 snap-x snap-mandatory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                         tabIndex={0}
-                        aria-label="Our Journey timeline"
                         onKeyDown={handleMobileKeyDown}
                     >
                         {items.map((item) => (
