@@ -9,6 +9,7 @@ import Photography from './pages/Photography';
 import Gallery from './pages/Gallery';
 import Films from './pages/Films';
 import Contact from './pages/Contact';
+import FAQ from './pages/FAQ';
 
 import About from './pages/About';
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/photography/:slug" element={<Gallery />} />
           <Route path="/films" element={<Films />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<FAQ />} />
         </Routes>
       </main>
       <Footer />
