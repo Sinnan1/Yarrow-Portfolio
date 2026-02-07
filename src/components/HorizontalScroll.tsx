@@ -81,11 +81,11 @@ const HorizontalScroll = () => {
             <section className="bg-black py-16 md:hidden">
                 <div className="px-6">
                     <p className="text-gold uppercase tracking-[0.3em] text-sm mb-4">Our Journey</p>
-                    <h2 className="font-serif text-white text-4xl leading-tight">
+                    <h2 id="journey-heading" className="font-serif text-white text-4xl leading-tight">
                         A Decade of <br /> <span className="italic text-white/50">Excellence</span>
                     </h2>
                 </div>
-                <div className="relative mt-10" role="region" aria-label="Our Journey timeline">
+                <div className="relative mt-10" role="region" aria-labelledby="journey-heading">
                     <ul
                         className="flex gap-6 overflow-x-auto px-6 pb-6 snap-x snap-mandatory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                         tabIndex={0}
@@ -94,7 +94,6 @@ const HorizontalScroll = () => {
                         {items.map((item) => (
                             <li
                                 key={item.id}
-                                aria-label={`${item.year} ${item.title}`}
                                 className="group relative flex-shrink-0 overflow-hidden bg-cream/5 w-[80vw] h-[50vh] snap-start"
                             >
                                 <img
