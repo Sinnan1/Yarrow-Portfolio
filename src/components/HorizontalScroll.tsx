@@ -5,18 +5,19 @@ const SCROLL_DISTANCE = 240;
 
 const HorizontalScroll = () => {
     const targetRef = useRef<HTMLDivElement>(null);
+    const listRef = useRef<HTMLUListElement>(null);
     const { scrollYProgress } = useScroll({
         target: targetRef,
     });
 
     const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
-    const handleMobileKeyDown = (event: KeyboardEvent<HTMLUListElement>) => {
+    const handleMobileKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
         if (event.key === "ArrowRight") {
             event.preventDefault();
-            event.currentTarget.scrollBy({ left: SCROLL_DISTANCE, behavior: "smooth" });
+            listRef.current?.scrollBy({ left: SCROLL_DISTANCE, behavior: "smooth" });
         } else if (event.key === "ArrowLeft") {
             event.preventDefault();
-            event.currentTarget.scrollBy({ left: -SCROLL_DISTANCE, behavior: "smooth" });
+            listRef.current?.scrollBy({ left: -SCROLL_DISTANCE, behavior: "smooth" });
         }
     };
 
@@ -86,13 +87,18 @@ const HorizontalScroll = () => {
                         A Decade of <br /> <span className="italic text-white/50">Excellence</span>
                     </h2>
                 </div>
-                <div className="relative mt-10" role="region" aria-labelledby="journey-heading">
+                <div
+                    className="relative mt-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                    role="region"
+                    aria-labelledby="journey-heading"
+                    tabIndex={0}
+                    onKeyDown={handleMobileKeyDown}
+                >
                     <ul
-                        className="flex gap-6 overflow-x-auto px-6 pb-6 snap-x snap-mandatory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-                        tabIndex={0}
+                        ref={listRef}
+                        className="flex gap-6 overflow-x-auto px-6 pb-6 snap-x snap-mandatory"
                         role="list"
                         aria-label="Our Journey timeline entries"
-                        onKeyDown={handleMobileKeyDown}
                     >
                         {items.map((item) => (
                             <li
