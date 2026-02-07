@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Instagram, Facebook, Twitter, ChevronDown } from 'lucide-react';
+import { Instagram, Facebook, Twitter, ChevronDown, Menu, X } from 'lucide-react';
 import { useScrollDirection } from '../hooks/useScrollDirection';
 
 interface NavbarProps {
@@ -9,6 +9,7 @@ interface NavbarProps {
 
 const Navbar = ({ variant = 'default' }: NavbarProps) => {
   const [showMoreDropdown, setShowMoreDropdown] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { scrollDirection, scrollY } = useScrollDirection();
 
@@ -16,6 +17,13 @@ const Navbar = ({ variant = 'default' }: NavbarProps) => {
     { label: 'Photography', href: '/photography' },
     { label: 'Films', href: '/films' },
     { label: 'Contact Us', href: '/contact' },
+  ];
+  const mobileLinks = [
+    ...navLinks,
+    { label: 'Editorial', href: '#' },
+    { label: 'About Us', href: '/about' },
+    { label: 'Press', href: '#' },
+    { label: 'FAQ', href: '#' },
   ];
 
   const isTransparent = variant === 'transparent';
@@ -118,7 +126,7 @@ const Navbar = ({ variant = 'default' }: NavbarProps) => {
         </div>
 
         {/* Right Side - Social + CTA */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-4">
             <a
               href="https://instagram.com"
@@ -150,15 +158,40 @@ const Navbar = ({ variant = 'default' }: NavbarProps) => {
           </div>
           <Link
             to="/contact"
-            className={`touch-target touch-feedback ${(isTransparent && !isScrolled)
+            className={`hidden sm:inline-flex touch-target touch-feedback ${(isTransparent && !isScrolled)
               ? "border border-white/40 text-white px-6 py-2.5 text-xs tracking-[0.2em] uppercase transition-all duration-500 hover:bg-white/10 hover:border-white hover:-translate-y-0.5"
               : "bg-gold text-white px-6 py-2.5 text-xs tracking-[0.2em] uppercase transition-all duration-500 hover:bg-gold-dark hover:-translate-y-0.5"}`}
             style={!(isTransparent && !isScrolled) ? { boxShadow: '0 4px 15px rgba(166, 144, 96, 0.25)' } : {}}
           >
             Get In Touch
           </Link>
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            className={`lg:hidden transition-all duration-300 hover:text-gold ${iconColorClasses}`}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMobileMenuOpen}
+          >
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </div>
+      {isMobileMenuOpen && (
+        <div className="lg:hidden border-t border-gold/10 bg-cream/95 backdrop-blur-md">
+          <div className="px-8 py-6 flex flex-col gap-4">
+            {mobileLinks.map((link) => (
+              <Link
+                key={link.label}
+                to={link.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`${linkBaseClasses} text-black/80 hover:text-gold`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
   );
 };
