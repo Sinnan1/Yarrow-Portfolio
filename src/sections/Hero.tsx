@@ -1,17 +1,21 @@
+import { motion, useScroll, useTransform } from 'framer-motion';
+
 const Hero = () => {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+
   return (
     <div className="absolute inset-0">
-      <img
-        src="/hero-couple.jpg"
-        alt="Wedding Couple"
-        className="w-full h-full object-cover object-top grayscale"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/10" />
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
-        <div className="w-px h-16 bg-gradient-to-b from-transparent via-white/50 to-white/50" />
-      </div>
+      {/* Parallax Background */}
+      <motion.div style={{ y }} className="absolute inset-0">
+        <img
+          src="/hero-couple.jpg"
+          alt="Wedding Couple"
+          className="w-full h-full object-cover object-top"
+        />
+      </motion.div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
     </div>
   );
 };
