@@ -1,6 +1,8 @@
 import { useRef, type KeyboardEvent } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
+const SCROLL_DISTANCE = 240;
+
 const HorizontalScroll = () => {
     const targetRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
@@ -8,7 +10,6 @@ const HorizontalScroll = () => {
     });
 
     const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
-    const SCROLL_DISTANCE = 240;
     const handleMobileKeyDown = (event: KeyboardEvent<HTMLUListElement>) => {
         if (event.key === "ArrowRight") {
             event.preventDefault();
@@ -89,6 +90,8 @@ const HorizontalScroll = () => {
                     <ul
                         className="flex gap-6 overflow-x-auto px-6 pb-6 snap-x snap-mandatory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                         tabIndex={0}
+                        role="list"
+                        aria-label="Our Journey timeline entries"
                         onKeyDown={handleMobileKeyDown}
                     >
                         {items.map((item) => (
