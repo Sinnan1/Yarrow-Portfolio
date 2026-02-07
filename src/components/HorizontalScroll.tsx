@@ -8,12 +8,13 @@ const HorizontalScroll = () => {
     });
 
     const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
+    const SCROLL_DISTANCE = 240;
     const handleMobileKeyDown = (event: KeyboardEvent<HTMLUListElement>) => {
         if (event.key === "ArrowRight") {
-            event.currentTarget.scrollBy({ left: 240, behavior: "smooth" });
+            event.currentTarget.scrollBy({ left: SCROLL_DISTANCE, behavior: "smooth" });
         }
         if (event.key === "ArrowLeft") {
-            event.currentTarget.scrollBy({ left: -240, behavior: "smooth" });
+            event.currentTarget.scrollBy({ left: -SCROLL_DISTANCE, behavior: "smooth" });
         }
     };
 
