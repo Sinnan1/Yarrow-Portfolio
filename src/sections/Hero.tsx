@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <div className="absolute inset-0">
       {/* Parallax Background */}
-      <motion.div style={{ y }} className="absolute inset-0">
+      <motion.div style={{ y, opacity }} className="absolute inset-0">
         <img
           src="/hero-couple.jpg"
           alt="Wedding Couple"
