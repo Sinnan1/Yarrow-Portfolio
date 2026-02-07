@@ -20,10 +20,7 @@ const Navbar = ({ variant = 'default' }: NavbarProps) => {
   ];
   const mobileLinks = [
     ...navLinks,
-    { label: 'Editorial', href: '#' },
     { label: 'About Us', href: '/about' },
-    { label: 'Press', href: '#' },
-    { label: 'FAQ', href: '#' },
   ];
 
   const isTransparent = variant === 'transparent';

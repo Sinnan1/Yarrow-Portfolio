@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, type KeyboardEvent } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const HorizontalScroll = () => {
@@ -8,6 +8,14 @@ const HorizontalScroll = () => {
     });
 
     const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
+    const handleMobileKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === "ArrowRight") {
+            event.currentTarget.scrollBy({ left: 240, behavior: "smooth" });
+        }
+        if (event.key === "ArrowLeft") {
+            event.currentTarget.scrollBy({ left: -240, behavior: "smooth" });
+        }
+    };
 
     const items = [
         {
@@ -75,7 +83,13 @@ const HorizontalScroll = () => {
                         A Decade of <br /> <span className="italic text-white/50">Excellence</span>
                     </h2>
                 </div>
-                <div className="mt-10 flex gap-6 overflow-x-auto px-6 pb-6 snap-x snap-mandatory">
+                <div
+                    className="mt-10 flex gap-6 overflow-x-auto px-6 pb-6 snap-x snap-mandatory"
+                    tabIndex={0}
+                    role="list"
+                    aria-label="Our Journey timeline"
+                    onKeyDown={handleMobileKeyDown}
+                >
                     {items.map((item) => (
                         <div
                             key={item.id}
