@@ -8,7 +8,7 @@ const HorizontalScroll = () => {
     });
 
     const x = useTransform(scrollYProgress, [0, 1], ["1%", "-95%"]);
-    const handleMobileKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    const handleMobileKeyDown = (event: KeyboardEvent<HTMLUListElement>) => {
         if (event.key === "ArrowRight") {
             event.currentTarget.scrollBy({ left: 240, behavior: "smooth" });
         }
@@ -83,17 +83,15 @@ const HorizontalScroll = () => {
                         A Decade of <br /> <span className="italic text-white/50">Excellence</span>
                     </h2>
                 </div>
-                <div
-                    className="mt-10 flex gap-6 overflow-x-auto px-6 pb-6 snap-x snap-mandatory"
+                <ul
+                    className="mt-10 flex gap-6 overflow-x-auto px-6 pb-6 snap-x snap-mandatory focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                     tabIndex={0}
-                    role="list"
                     aria-label="Our Journey timeline"
                     onKeyDown={handleMobileKeyDown}
                 >
                     {items.map((item) => (
-                        <div
+                        <li
                             key={item.id}
-                            role="listitem"
                             aria-label={`${item.year} ${item.title}`}
                             className="group relative flex-shrink-0 overflow-hidden bg-cream/5 w-[80vw] h-[50vh] snap-start"
                         >
@@ -108,9 +106,9 @@ const HorizontalScroll = () => {
                                 <h3 className="text-white font-serif text-2xl mb-2">{item.title}</h3>
                                 <p className="text-white/60 text-sm font-light">{item.desc}</p>
                             </div>
-                        </div>
+                        </li>
                     ))}
-                </div>
+                </ul>
             </section>
             <section ref={targetRef} className="relative hidden md:block h-[300vh] bg-black">
                 <div className="sticky top-0 flex h-screen items-center overflow-hidden">
