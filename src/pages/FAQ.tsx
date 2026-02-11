@@ -2,6 +2,8 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Plus, Minus } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { cmsApi } from '../api/cms';
+import type { FAQPageContent } from '../types/content';
 
 interface FAQItem {
   question: string;
@@ -14,107 +16,138 @@ interface FAQCategory {
   items: FAQItem[];
 }
 
-const faqData: FAQCategory[] = [
-  {
-    title: 'Booking & Availability',
-    subtitle: 'Starting Your Journey',
-    items: [
+const FAQ = () => {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef });
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+  const [isVisible, setIsVisible] = useState(false);
+  const [content, setContent] = useState<FAQPageContent | null>(null);
+
+  useEffect(() => {
+    setIsVisible(true);
+    cmsApi.getContent('faq').then((data) => {
+      if (data) setContent(data);
+    });
+  }, []);
+
+  const defaultContent: FAQPageContent = {
+    hero: {
+      title: "Questions & Answers",
+      subtitle: "Everything You Need to Know",
+      image: "/about-bride-1.jpg"
+    },
+    intro: {
+      text: "We believe in transparency and openness. Here are the answers to the questions we hear most often. If there's anything else on your mind, we'd love to hear from you."
+    },
+    categories: [
       {
-        question: 'How far in advance should we book?',
-        answer:
-          'We recommend reaching out 8–12 months before your wedding date to ensure availability. Our calendar fills quickly, especially during peak wedding season (October–February). For destination weddings, earlier booking is ideal so we can plan logistics together.',
+        title: 'Booking & Availability',
+        subtitle: 'Starting Your Journey',
+        items: [
+          {
+            question: 'How far in advance should we book?',
+            answer: 'We recommend reaching out 8–12 months before your wedding date to ensure availability. Our calendar fills quickly, especially during peak wedding season (October–February). For destination weddings, earlier booking is ideal so we can plan logistics together.',
+          },
+          // ... other default items
+        ]
       },
-      {
-        question: 'Do you travel for destination weddings?',
-        answer:
-          'Absolutely. We have documented weddings across 25+ countries — from the lakes of Italy to the beaches of Bali. Travel and accommodation are quoted separately, and we handle all logistics so you can focus on your celebration.',
-      },
-      {
-        question: 'What is the booking process?',
-        answer:
-          'It begins with a conversation. After an initial call to understand your vision, we send a tailored proposal. A signed agreement and a 30% retainer secure your date. From there, we stay in close touch leading up to your big day.',
-      },
-      {
-        question: 'Can we meet before booking?',
-        answer:
-          "Of course. We love meeting our couples in person or over a video call. It's important that we connect — after all, we'll be by your side on one of the most intimate days of your life.",
-      },
-    ],
-  },
-  {
-    title: 'The Experience',
-    subtitle: 'On Your Day',
-    items: [
-      {
-        question: 'How do you approach a wedding day?',
-        answer:
-          'We blend into your celebration. Our style is unobtrusive and documentary — we capture real moments as they unfold, not manufactured ones. That said, we do set aside a short window for intimate portraits that feel natural and timeless.',
-      },
-      {
-        question: 'How large is the team on the wedding day?',
-        answer:
-          'This depends on the scale of your event. A typical team includes 2 lead photographers and 1–2 cinematographers. For multi-day celebrations, we bring a larger crew to ensure every moment is covered.',
-      },
-      {
-        question: 'Do you offer pre-wedding shoots?',
-        answer:
-          'Yes, and we highly recommend them. A pre-wedding session helps us build rapport and understand your chemistry. It also gives you a chance to get comfortable in front of the lens before the big day.',
-      },
-      {
-        question: 'What should we wear or prepare?',
-        answer:
-          'We provide a detailed style guide and a planning timeline ahead of your session. Our only real advice: be yourselves. The most beautiful photographs come from authentic emotion, not perfect outfits.',
-      },
-    ],
-  },
-  {
-    title: 'Deliverables',
-    subtitle: 'Your Memories',
-    items: [
-      {
-        question: 'How many photos will we receive?',
-        answer:
-          "For a full-day wedding, you can expect 400–800 curated, hand-edited images. We believe in quality over quantity — every image in your gallery is one we're proud of.",
-      },
-      {
-        question: 'When will we receive our photos and films?',
-        answer:
-          'Highlight reels are delivered within 4–6 weeks. Full photo galleries are ready in 6–8 weeks, and cinematic films within 10–12 weeks. We share sneak peeks within the first week to tide you over.',
-      },
-      {
-        question: 'Do you offer albums or prints?',
-        answer:
-          'Yes. We offer handcrafted, museum-quality albums designed in-house with Italian leather covers and archival paper. We also provide fine art prints and custom wall displays. These are heirlooms, not just photo books.',
-      },
-      {
-        question: 'Will we have rights to our photos?',
-        answer:
-          "You receive a personal usage license for all delivered images. You're free to print, share, and cherish them however you wish. We retain creative rights for portfolio and editorial use, always with your blessing.",
-      },
-    ],
-  },
-  {
-    title: 'Investment',
-    subtitle: 'Pricing & Packages',
-    items: [
-      {
-        question: 'What are your starting prices?',
-        answer:
-          'Our wedding collections begin at ₹3,00,000 for photography. Cinematography packages start at ₹4,00,000. Combined packages offer the best value. Each proposal is tailored to the scope and location of your celebration.',
-      },
-      {
-        question: 'Do you offer customized packages?',
-        answer:
-          'Every wedding is unique, and so is every package we create. We work closely with you to build a collection that matches your vision, timeline, and budget — no cookie-cutter solutions.',
-      },
-      {
-        question: 'What is your cancellation policy?',
-        answer:
-          'Life happens, and we understand. Cancellations made 90+ days in advance receive a 50% refund of the retainer. For date changes, we do our best to accommodate your new timeline at no extra cost.',
-      },
-    ],
-  },
-];
+      // ... other default categories
+    ]
+  };
+
+  const data = content || defaultContent;
+
+  return (
+    <div className="min-h-screen bg-cream">
+      {/* Hero Section */}
+      <section ref={heroRef} className="relative h-[60vh] overflow-hidden">
+        <motion.div style={{ y }} className="absolute inset-0">
+          <img
+            src={data.hero.image}
+            alt="Yarrow Weddings FAQ"
+            className="w-full h-full object-cover grayscale"
+          />
+          <div className="absolute inset-0 bg-black/50" />
+        </motion.div>
+        <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
+          <div
+            className={`transition-all duration-1000 ${isVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-10'
+              }`}
+          >
+            <p className="text-white/70 uppercase tracking-[0.4em] text-xs mb-4">
+              {data.hero.subtitle}
+            </p>
+            <h1 className="font-serif text-white text-5xl md:text-7xl lg:text-8xl">
+              {data.hero.title}
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      {/* Intro */}
+      <section className="py-20 px-8 lg:px-24 bg-cream">
+        <div className="max-w-3xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
+          >
+            <p className="text-black/60 font-light text-lg leading-relaxed">
+              {data.intro.text}{' '}
+              <Link
+                to="/contact"
+                className="text-gold hover:text-gold-dark underline-elegant transition-colors duration-300"
+              >
+                hear from you
+              </Link>
+              .
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ Sections with Sticky Scroll */}
+      {data.categories.map((category, index) => (
+        <FAQCategorySection
+          key={category.title}
+          category={category}
+          index={index}
+        />
+      ))}
+
+      {/* CTA Section */}
+      <section className="py-24 bg-black text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true }}
+          className="px-8"
+        >
+          <p className="text-gold uppercase tracking-[0.3em] text-xs mb-6">
+            Still Have Questions?
+          </p>
+          <h2 className="font-serif text-white text-4xl lg:text-6xl mb-8">
+            Let's Talk.
+          </h2>
+          <p className="text-white/50 font-light max-w-md mx-auto mb-12">
+            We're always happy to chat — no commitment needed. Reach out and
+            let's start a conversation about your story.
+          </p>
+          <Link
+            to="/contact"
+            className="inline-block border border-gold text-gold px-10 py-4 text-xs tracking-[0.2em] uppercase hover:bg-gold hover:text-white transition-all duration-500"
+          >
+            Get In Touch
+          </Link>
+        </motion.div>
+      </section>
+    </div>
+  );
+};
 
 const FAQCategorySection = ({
   category,
@@ -185,11 +218,10 @@ const FAQCategorySection = ({
                   </span>
                 </button>
                 <div
-                  className={`overflow-hidden transition-all duration-500 ${
-                    openIndex === i
+                  className={`overflow-hidden transition-all duration-500 ${openIndex === i
                       ? 'max-h-[500px] opacity-100 pb-8'
                       : 'max-h-0 opacity-0'
-                  }`}
+                    }`}
                 >
                   <p className="text-black/60 font-light leading-relaxed text-base lg:text-lg pr-8">
                     {item.answer}
@@ -201,111 +233,6 @@ const FAQCategorySection = ({
         </div>
       </div>
     </section>
-  );
-};
-
-const FAQ = () => {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: heroRef });
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  return (
-    <div className="min-h-screen bg-cream">
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative h-[60vh] overflow-hidden">
-        <motion.div style={{ y }} className="absolute inset-0">
-          <img
-            src="/about-bride-1.jpg"
-            alt="Yarrow Weddings FAQ"
-            className="w-full h-full object-cover grayscale"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </motion.div>
-        <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
-          <div
-            className={`transition-all duration-1000 ${
-              isVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-10'
-            }`}
-          >
-            <p className="text-white/70 uppercase tracking-[0.4em] text-xs mb-4">
-              Everything You Need to Know
-            </p>
-            <h1 className="font-serif text-white text-5xl md:text-7xl lg:text-8xl">
-              Questions & Answers
-            </h1>
-          </div>
-        </div>
-      </section>
-
-      {/* Intro */}
-      <section className="py-20 px-8 lg:px-24 bg-cream">
-        <div className="max-w-3xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true }}
-          >
-            <p className="text-black/60 font-light text-lg leading-relaxed">
-              We believe in transparency and openness. Here are the answers to
-              the questions we hear most often. If there's anything else on your
-              mind, we'd love to{' '}
-              <Link
-                to="/contact"
-                className="text-gold hover:text-gold-dark underline-elegant transition-colors duration-300"
-              >
-                hear from you
-              </Link>
-              .
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* FAQ Sections with Sticky Scroll */}
-      {faqData.map((category, index) => (
-        <FAQCategorySection
-          key={category.title}
-          category={category}
-          index={index}
-        />
-      ))}
-
-      {/* CTA Section */}
-      <section className="py-24 bg-black text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true }}
-          className="px-8"
-        >
-          <p className="text-gold uppercase tracking-[0.3em] text-xs mb-6">
-            Still Have Questions?
-          </p>
-          <h2 className="font-serif text-white text-4xl lg:text-6xl mb-8">
-            Let's Talk.
-          </h2>
-          <p className="text-white/50 font-light max-w-md mx-auto mb-12">
-            We're always happy to chat — no commitment needed. Reach out and
-            let's start a conversation about your story.
-          </p>
-          <Link
-            to="/contact"
-            className="inline-block border border-gold text-gold px-10 py-4 text-xs tracking-[0.2em] uppercase hover:bg-gold hover:text-white transition-all duration-500"
-          >
-            Get In Touch
-          </Link>
-        </motion.div>
-      </section>
-    </div>
   );
 };
 

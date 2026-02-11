@@ -1,15 +1,24 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { ArrowLeft, Heart, Share2 } from 'lucide-react';
-import { getGallery } from '../data/galleries';
+import { cmsApi } from '../api/cms';
+import type { GalleryData } from '../types/content';
+// import { getGallery } from '../data/galleries'; // Deprecated
 
 const Gallery = () => {
   const { slug } = useParams<{ slug: string }>();
   const [isVisible, setIsVisible] = useState(false);
   const [likedImages, setLikedImages] = useState<Set<number>>(new Set());
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [galleriesData, setGalleriesData] = useState<GalleryData | null>(null);
 
-  const gallery = slug ? getGallery(slug) : null;
+  useEffect(() => {
+    cmsApi.getContent('galleries').then((data) => {
+      if (data) setGalleriesData(data);
+    });
+  }, []);
+
+  const gallery = (slug && galleriesData) ? galleriesData[slug] : null;
 
   useEffect(() => {
     setIsVisible(true);

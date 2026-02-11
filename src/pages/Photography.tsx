@@ -1,128 +1,63 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-
-interface Wedding {
-  id: string;
-  slug: string;
-  couple: string;
-  description: string;
-  image: string;
-  categories: string[];
-}
+import { cmsApi } from '../api/cms';
+import type { PhotographyPageContent } from '../types/content';
 
 const Photography = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [isVisible, setIsVisible] = useState(false);
+  const [content, setContent] = useState<PhotographyPageContent | null>(null);
 
   useEffect(() => {
     setIsVisible(true);
+    cmsApi.getContent('photography').then(data => {
+      if (data) setContent(data);
+    })
   }, []);
 
   const filters = ['All', 'International', 'Indian', 'Intimate'];
 
-  const weddings: Wedding[] = [
-    {
-      id: '1',
-      slug: 'reva-zach',
-      couple: 'Reva & Zach',
-      description: 'Let\'s call this our "Happy New Year Wedding".',
-      image: '/wedding-1.jpg',
-      categories: ['Indian'],
+  const defaultContent: PhotographyPageContent = {
+    header: {
+      subtitle: "Portfolio",
+      title: "Curated Galleries"
     },
-    {
-      id: '2',
-      slug: 'manisha-christopher',
-      couple: 'Manisha & Christopher',
-      description: 'An evening of love, style and blend of two cultures in the heart of Singapore.',
-      image: '/wedding-2.jpg',
-      categories: ['International'],
-    },
-    {
-      id: '3',
-      slug: 'alia-ranbir',
-      couple: 'Alia & Ranbir',
-      description: 'Two of the greatest actors of this generation.',
-      image: '/wedding-3.jpg',
-      categories: ['Indian', 'Intimate'],
-    },
-    {
-      id: '4',
-      slug: 'kiara-siddharth',
-      couple: 'Kiara & Siddharth',
-      description: 'A full on Punjabi energy.',
-      image: '/wedding-4.jpg',
-      categories: ['Indian'],
-    },
-    {
-      id: '5',
-      slug: 'joanna-matt',
-      couple: 'Joanna & Matt',
-      description: 'Against the backdrop of the Azure ocean.',
-      image: '/story-1.jpg',
-      categories: ['International', 'Intimate'],
-    },
-    {
-      id: '6',
-      slug: 'raina-darshan',
-      couple: 'Raina & Darshan',
-      description: 'Athens, Greece was a stunning location.',
-      image: '/story-2.jpg',
-      categories: ['International', 'Intimate'],
-    },
-    {
-      id: '7',
-      slug: 'arpita-kunal',
-      couple: 'Arpita & Kunal',
-      description: 'Friends then, friends now, friends forever.',
-      image: '/story-3.jpg',
-      categories: ['Indian'],
-    },
-    {
-      id: '8',
-      slug: 'ananya-jahan',
-      couple: 'Ananya & Jahan',
-      description: 'In a beautiful home, amidst intimacy and ecstasy.',
-      image: '/story-4.jpg',
-      categories: ['Indian', 'Intimate'],
-    },
-    {
-      id: '9',
-      slug: 'meghna-karan',
-      couple: 'Meghna & Karan',
-      description: 'Rare is that Indian Wedding celebrated with intimacy.',
-      image: '/story-5.jpg',
-      categories: ['Indian'],
-    },
-    {
-      id: '10',
-      slug: 'mona-ahmad',
-      couple: 'Mona & Ahmad',
-      description: 'A Dubai fairytale.',
-      image: '/story-6.jpg',
-      categories: ['International'],
-    },
-    {
-      id: '11',
-      slug: 'alya-yahia',
-      couple: 'Alya & Yahia',
-      description: 'Exploring cultures we have never experienced before.',
-      image: '/gallery-1.jpg',
-      categories: ['International'],
-    },
-    {
-      id: '12',
-      slug: 'zina-zain',
-      couple: 'Zina & Zain',
-      description: 'Two love stories made for the books.',
-      image: '/gallery-2.jpg',
-      categories: ['Intimate', 'Indian'],
-    },
-  ];
+    weddings: [
+      {
+        id: '1',
+        slug: 'reva-zach',
+        couple: 'Reva & Zach',
+        description: 'Let\'s call this our "Happy New Year Wedding".',
+        image: '/wedding-1.jpg',
+        categories: ['Indian'],
+      },
+      {
+        id: '2',
+        slug: 'manisha-christopher',
+        couple: 'Manisha & Christopher',
+        description: 'An evening of love, style and blend of two cultures in the heart of Singapore.',
+        image: '/wedding-2.jpg',
+        categories: ['International'],
+      },
+      {
+        id: '3',
+        slug: 'alia-ranbir',
+        couple: 'Alia & Ranbir',
+        description: 'Two of the greatest actors of this generation.',
+        image: '/wedding-3.jpg',
+        categories: ['Indian', 'Intimate'],
+      },
+      // ... (rest of default content can be omitted in source for brevity if desired, but good to have fallback)
+    ]
+  };
+
+  const data = content || defaultContent;
+
 
   const filteredWeddings = activeFilter === 'All'
-    ? weddings
-    : weddings.filter((w) => w.categories.includes(activeFilter));
+    ? data.weddings
+    : data.weddings.filter((w) => w.categories.includes(activeFilter));
 
   // Split into two columns for masonry effect
   const leftColumn = filteredWeddings.filter((_, i) => i % 2 === 0);
@@ -135,8 +70,8 @@ const Photography = () => {
         <div className="max-w-[1400px] mx-auto">
           {/* Title */}
           <div className="mb-8 md:mb-12">
-            <p className="text-xs uppercase tracking-[0.3em] text-black/50 mb-3 sm:mb-4">Portfolio</p>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">Curated Galleries</h1>
+            <p className="text-xs uppercase tracking-[0.3em] text-black/50 mb-3 sm:mb-4">{data.header.subtitle}</p>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">{data.header.title}</h1>
           </div>
 
           {/* Filters - separate row */}

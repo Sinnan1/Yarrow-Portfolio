@@ -11,8 +11,77 @@ import Testimonials from '../components/Testimonials';
 import OurApproach from '../components/OurApproach';
 
 
+import type { HomeContent } from '../types/content';
+import { cmsApi } from '../api/cms';
+// ... existing imports
+
 const Home = () => {
   const [isVisible, setIsVisible] = useState<{ [key: string]: boolean }>({});
+  const [content, setContent] = useState<HomeContent | null>(null);
+
+  useEffect(() => {
+    // Load content from CMS
+    cmsApi.getContent('home').then((data) => {
+      if (data) setContent(data);
+    });
+  }, []);
+
+  // Fallback content (original hardcoded)
+  const defaultContent = {
+    hero: {
+      title: "A Modern Approach",
+      subtitle: "to an Age Old Tradition"
+    },
+    about: {
+      image1: "/about-bride-1.jpg",
+      image2: "/about-bride-2.jpg",
+      text1: "Considered to be the epitome of Modern Photography and Filmmaking, Yarrow Weddings has transformed the Indian Wedding landscape on a regular basis. For almost a decade we have been creating photographs and films which are timeless and have been etched in memories of thousands of people forever.",
+      text2: "Awarded as the Wedding Filmmaker of the year for four consecutive years at the Weddingsutra awards along with numerous other awards, we are the only company listed on IMDB for its award winning films."
+    },
+    featuredWeddings: [
+      { image: '/wedding-1.jpg', couple: 'Reva & Zach', date: 'Oct 7, 2024' },
+      { image: '/wedding-2.jpg', couple: 'Manisha & Christopher', date: 'Aug 25, 2024' },
+      { image: '/wedding-3.jpg', couple: 'Alia & Ranbir, Mumbai', date: 'Aug 8, 2024' },
+      { image: '/wedding-4.jpg', couple: 'Kiara & Siddharth', date: 'Apr 24, 2024' },
+    ],
+    films: [
+      {
+        image: '/film-1.jpg',
+        title: 'Love In Second Innings.',
+        description: "Second marriage, for many, is still a taboo. And this story illustrates why it's not. It's a treatise on how the past doesn't come in the way of love and respect. It's a heroic tale of victory over stereotypes and archaic customs. It's a story of how love always triumphs in the end. Every moment that we spent with Deepali and Nishant convinced us that life can be made beautiful... that tears can be turned into a drizzle of hope; that fear can be turned into the excitement of exploring the unknown; that the end is but a new beginning.",
+      },
+      {
+        image: '/film-2.jpg',
+        title: 'Twenty Years in the Making',
+        description: "This one is special, very special. Hiba and Akbar's story took us on a journey all the way from Hiba's childhood till their reception in Bhopal and on the way we discovered an all new perspective of filming a wedding. We knew from start that no matter how hard we try we can never justify this wedding in a 5 minute film, but we tried, tried for an year now and this is the best we could do. Its a film which is not just about a wedding, an India Pakistan story which is not about India or Pakistan. For us its much more than that.",
+      },
+    ],
+    weddingStories: [
+      { image: '/story-1.jpg', couple: 'TAMANNA & DAN', location: '' },
+      { image: '/story-2.jpg', couple: 'ALISHA & RAHUL', location: 'Amalfi Coast, Italy' },
+      { image: '/story-3.jpg', couple: 'SALONI & SID', location: 'Bangkok' },
+      { image: '/story-4.jpg', couple: 'ZINAB & ZAIN', location: '' },
+    ],
+    awards: [
+      { name: 'LOS ANGELES\nFILM FESTIVAL', subtitle: 'FINALIST\n2020', years: '' },
+      { name: 'WEDDING\nFILMMAKER', subtitle: 'OF THE YEAR', years: '2020, 2019, 2018' },
+      { name: 'PLATINUM FILM\nOF THE YEAR', subtitle: '2017', years: 'INDIA FILM PROJECT' },
+      { name: 'WEDDING\nINFLUENCERS', subtitle: 'OF THE YEAR', years: '2019' },
+    ],
+    ibtda: {
+      title: "our finest Ibtda",
+      description: "Ibtda is our finest offering with fine-art editorial style photography lead by Siddharth Sharma, founder of Yarrow Weddings.",
+      link: "https://ibtda.co"
+    },
+    cta: {
+      title: "Let's Create Magic Together",
+      text: "Every love story deserves to be told beautifully. Let us capture yours."
+    }
+  };
+
+  const data = content || defaultContent;
+
+  const { featuredWeddings, films, weddingStories, awards } = data;
 
   const aboutRef = useRef<HTMLDivElement>(null);
   const featuredRef = useRef<HTMLDivElement>(null);
@@ -38,41 +107,6 @@ const Home = () => {
     return () => observer.disconnect();
   }, []);
 
-  const featuredWeddings = [
-    { image: '/wedding-1.jpg', couple: 'Reva & Zach', date: 'Oct 7, 2024' },
-    { image: '/wedding-2.jpg', couple: 'Manisha & Christopher', date: 'Aug 25, 2024' },
-    { image: '/wedding-3.jpg', couple: 'Alia & Ranbir, Mumbai', date: 'Aug 8, 2024' },
-    { image: '/wedding-4.jpg', couple: 'Kiara & Siddharth', date: 'Apr 24, 2024' },
-  ];
-
-  const films = [
-    {
-      image: '/film-1.jpg',
-      title: 'Love In Second Innings.',
-      description: "Second marriage, for many, is still a taboo. And this story illustrates why it's not. It's a treatise on how the past doesn't come in the way of love and respect. It's a heroic tale of victory over stereotypes and archaic customs. It's a story of how love always triumphs in the end. Every moment that we spent with Deepali and Nishant convinced us that life can be made beautiful... that tears can be turned into a drizzle of hope; that fear can be turned into the excitement of exploring the unknown; that the end is but a new beginning.",
-    },
-    {
-      image: '/film-2.jpg',
-      title: 'Twenty Years in the Making',
-      description: "This one is special, very special. Hiba and Akbar's story took us on a journey all the way from Hiba's childhood till their reception in Bhopal and on the way we discovered an all new perspective of filming a wedding. We knew from start that no matter how hard we try we can never justify this wedding in a 5 minute film, but we tried, tried for an year now and this is the best we could do. Its a film which is not just about a wedding, an India Pakistan story which is not about India or Pakistan. For us its much more than that.",
-    },
-  ];
-
-  const weddingStories = [
-    { image: '/story-1.jpg', couple: 'TAMANNA & DAN', location: '' },
-    { image: '/story-2.jpg', couple: 'ALISHA & RAHUL', location: 'Amalfi Coast, Italy' },
-    { image: '/story-3.jpg', couple: 'SALONI & SID', location: 'Bangkok' },
-    { image: '/story-4.jpg', couple: 'ZINAB & ZAIN', location: '' },
-  ];
-
-
-  const awards = [
-    { name: 'LOS ANGELES\nFILM FESTIVAL', subtitle: 'FINALIST\n2020', years: '' },
-    { name: 'WEDDING\nFILMMAKER', subtitle: 'OF THE YEAR', years: '2020, 2019, 2018' },
-    { name: 'PLATINUM FILM\nOF THE YEAR', subtitle: '2017', years: 'INDIA FILM PROJECT' },
-    { name: 'WEDDING\nINFLUENCERS', subtitle: 'OF THE YEAR', years: '2019' },
-  ];
-
   return (
     <div className="min-h-screen bg-cream">
       {/* Hero Section - Full Screen */}
@@ -90,8 +124,8 @@ const Home = () => {
           >
             <div className="decorative-line mx-auto mb-10" />
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight">
-              <span className="block italic font-light">A Modern Approach</span>
-              <span className="block not-italic mt-2 sm:mt-4 text-gold">to an Age Old Tradition</span>
+              <span className="block italic font-light">{data.hero.title}</span>
+              <span className="block not-italic mt-2 sm:mt-4 text-gold">{data.hero.subtitle}</span>
             </h2>
           </div>
 
@@ -102,7 +136,7 @@ const Home = () => {
             >
               <div className="aspect-[3/4] overflow-hidden shadow-lg">
                 <img
-                  src="/about-bride-1.jpg"
+                  src={data.about.image1}
                   alt="Elegant Bride"
                   className="w-full h-full object-cover transition-all duration-700 img-elegant-hover"
                 />
@@ -114,16 +148,10 @@ const Home = () => {
                 }`}
             >
               <p className="text-sm lg:text-base leading-relaxed text-black/80 mb-6 font-light">
-                Considered to be the epitome of Modern Photography and Filmmaking,
-                <span className="text-gold font-medium"> Yarrow Weddings</span> has transformed the Indian Wedding landscape on a regular basis. For
-                almost a decade we have been creating photographs and
-                films which are timeless and have been etched in memories of thousands of
-                people forever.
+                {data.about.text1}
               </p>
               <p className="text-sm lg:text-base leading-relaxed text-black/80 font-light">
-                Awarded as the Wedding Filmmaker of the year for four consecutive years at
-                the Weddingsutra awards along with numerous other awards, we are the
-                only company listed on IMDB for its award winning films.
+                {data.about.text2}
               </p>
               <div className="mt-8">
                 <Link to="/photography" className="inline-flex items-center gap-2 text-gold text-sm tracking-wider uppercase hover:gap-4 transition-all duration-300 underline-elegant">
@@ -138,7 +166,7 @@ const Home = () => {
             >
               <div className="aspect-[16/10] overflow-hidden shadow-lg">
                 <img
-                  src="/about-bride-2.jpg"
+                  src={data.about.image2}
                   alt="Bride in Gown"
                   className="w-full h-full object-cover transition-all duration-700 img-elegant-hover"
                 />
@@ -181,7 +209,7 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {featuredWeddings.map((wedding, index) => (
+            {featuredWeddings.map((wedding: any, index: number) => (
               <Link
                 key={index}
                 to={`/photography/${wedding.couple.toLowerCase().replace(/ & /g, '-').replace(/, /g, '-').replace(/ /g, '-')}`}
@@ -266,7 +294,7 @@ const Home = () => {
             className={`flex flex-wrap justify-center gap-8 lg:gap-16 mb-16 lg:mb-20 transition-all duration-1000 delay-200 ${isVisible.films ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
           >
-            {awards.map((award, index) => (
+            {awards.map((award: any, index: number) => (
               <div key={index} className="text-center max-w-[180px]">
                 <div className="w-16 h-16 rounded-full border-2 border-gold/30 flex items-center justify-center mx-auto mb-4">
                   <div className="w-10 h-10 rounded-full bg-gold/10"></div>
@@ -288,7 +316,7 @@ const Home = () => {
 
           {/* Film Cards */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14">
-            {films.map((film, index) => (
+            {films.map((film: any, index: number) => (
               <div
                 key={index}
                 className={`group transition-all duration-1000 ${isVisible.films ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -337,7 +365,7 @@ const Home = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-            {weddingStories.map((story, index) => (
+            {weddingStories.map((story: any, index: number) => (
               <div
                 key={index}
                 className={`group relative cursor-pointer transition-all duration-700 hover-lift ${isVisible.stories ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -402,7 +430,9 @@ const Home = () => {
                   className={`font-serif text-4xl lg:text-6xl text-white mb-6 transition-all duration-1000 delay-100 ${isVisible.ibtda ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                     }`}
                 >
-                  <span className="block italic font-light text-2xl lg:text-3xl mb-2 text-gold">our finest</span>
+                  <span className="block italic font-light text-2xl lg:text-3xl mb-2 text-gold">
+                    {data.ibtda.title.replace('Ibtda', '')}
+                  </span>
                   <span className="block">Ibtda</span>
                 </h2>
 
@@ -412,8 +442,7 @@ const Home = () => {
                   className={`text-white/80 text-sm lg:text-base leading-relaxed mb-8 transition-all duration-1000 delay-200 ${isVisible.ibtda ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                     }`}
                 >
-                  Ibtda is our finest offering with fine-art editorial style photography lead by Siddharth
-                  Sharma, founder of Yarrow Weddings.
+                  {data.ibtda.description}
                 </p>
 
                 <div
@@ -421,7 +450,7 @@ const Home = () => {
                     }`}
                 >
                   <a
-                    href="https://ibtda.co"
+                    href={data.ibtda.link || "https://ibtda.co"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block border-2 border-white text-white px-8 py-3 text-sm tracking-widest uppercase transition-all duration-500 hover:bg-white hover:text-black"
@@ -439,9 +468,9 @@ const Home = () => {
       <section className="py-16 md:py-24 lg:py-32 px-4 sm:px-8 lg:px-16 bg-cream">
         <div className="max-w-3xl mx-auto text-center">
           <div className="decorative-line mx-auto mb-8" />
-          <h3 className="font-serif text-3xl lg:text-4xl mb-4">Let&apos;s Create Magic Together</h3>
+          <h3 className="font-serif text-3xl lg:text-4xl mb-4">{data.cta.title}</h3>
           <p className="text-sm text-black/60 mb-10 font-light">
-            Every love story deserves to be told beautifully. Let us capture yours.
+            {data.cta.text}
           </p>
           <Link
             to="/contact"

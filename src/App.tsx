@@ -12,6 +12,9 @@ import Contact from './pages/Contact';
 import FAQ from './pages/FAQ';
 
 import About from './pages/About';
+import Dashboard from './pages/Admin/Dashboard';
+import Editor from './pages/Admin/Editor';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const location = useLocation();
@@ -31,6 +34,12 @@ function App() {
           <Route path="/films" element={<Films />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />
+
+          {/* Admin Routes */}
+          <Route path="/admin" element={<ProtectedRoute />}>
+            <Route index element={<Dashboard />} />
+            <Route path="edit/:page" element={<Editor />} />
+          </Route>
         </Routes>
       </main>
       <Footer />

@@ -1,0 +1,56 @@
+{
+    "hero": {
+        "image": "/soul-cinema-bg.jpg",
+        "subtitle": "The Architects of Memory",
+        "title": "We Are Yarrow"
+    },
+    "story": {
+        "title": "From a Single Lens to a Global Narrative.",
+        "p1": "It started with a simple belief: that weddings aren't just events; they are the closing chapters of one life and the opening lines of another. Ten years ago, we picked up a camera not to document proceedings, but to capture feelings.",
+        "p2": "What began in a small studio in Delhi has grown into a global collective of visual storytellers. We've traveled to 25 countries, witnessed thousands of vows, and learned one universal truth: every love story has a rhythm, and our job is to find it.",
+        "p3": "We don't follow trends. We don't use templates. We approach every wedding as a blank canvas, painting with light, shadow, and unscripted emotion."
+    },
+    "philosophy": {
+        "subtitle": "Our Philosophy",
+        "title": "\"We chase the moments you didn't know were happening.\"",
+        "principles": [
+            {
+                "title": "Soul",
+                "text": "We value raw emotion over perfection. We'd rather capture a blurry laugh than a stiff pose."
+            },
+            {
+                "title": "Cinema",
+                "text": "Your life is a movie. We film it that way. Wide angles, dramatic lighting, and thoughtful composition."
+            },
+            {
+                "title": "Legacy",
+                "text": "We aren't making content for Instagram. We are making heirlooms for your grandchildren."
+            }
+        ]
+    },
+    "team": {
+        "title": "The Collective",
+        "members": [
+            {
+                "name": "Siddharth Sharma",
+                "role": "Founder & Lead Photographer",
+                "image": "/about-bride-1.jpg"
+            },
+            {
+                "name": "Aditi Gupta",
+                "role": "Creative Director",
+                "image": "/about-bride-2.jpg"
+            },
+            {
+                "name": "Rohan Mehta",
+                "role": "Senior Cinematographer",
+                "image": "/wedding-3.jpg"
+            },
+            {
+                "name": "Zara Khan",
+                "role": "Editor in Chief",
+                "image": "/wedding-2.jpg"
+            }
+        ]
+    }
+}

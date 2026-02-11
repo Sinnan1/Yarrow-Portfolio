@@ -2,12 +2,43 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Instagram, Facebook, Twitter, ArrowRight, Mail, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { cmsApi } from '../api/cms';
+import type { ContactPageContent } from '../types/content';
 
 const Contact = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef });
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
   const [isVisible, setIsVisible] = useState(false);
+  const [content, setContent] = useState<ContactPageContent | null>(null);
+
+  useEffect(() => {
+    setIsVisible(true);
+    cmsApi.getContent('contact').then((data) => {
+      if (data) setContent(data);
+    });
+  }, []);
+
+  const defaultContent: ContactPageContent = {
+    hero: {
+      title: "Let's Start Your Story",
+      subtitle: "The Beginning",
+      image: "/about-bride-2.jpg"
+    },
+    intro: {
+      text: "Every great film begins with a conversation. Tell us about your vision, your dreams, and the moments you want to keep forever. Have questions first? Visit our FAQ page."
+    },
+    info: {
+      title: "Contact Us",
+      subtitle: "Get In Touch",
+      email: "hello@yarrowweddings.com",
+      phone: "+91 99647 87383",
+      location: "Worldwide — Based in India"
+    }
+  };
+
+  const data = content || defaultContent;
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,10 +48,6 @@ const Contact = () => {
     message: '',
     services: [] as string[],
   });
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,7 +69,7 @@ const Contact = () => {
       <section ref={heroRef} className="relative h-[50vh] md:h-[60vh] overflow-hidden">
         <motion.div style={{ y }} className="absolute inset-0">
           <img
-            src="/about-bride-2.jpg"
+            src={data.hero.image}
             alt="Yarrow Weddings Contact"
             className="w-full h-full object-cover grayscale"
           />
@@ -50,17 +77,16 @@ const Contact = () => {
         </motion.div>
         <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
           <div
-            className={`transition-all duration-1000 ${
-              isVisible
+            className={`transition-all duration-1000 ${isVisible
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-10'
-            }`}
+              }`}
           >
             <p className="text-white/70 uppercase tracking-[0.4em] text-xs mb-4">
-              The Beginning
+              {data.hero.subtitle}
             </p>
             <h1 className="font-serif text-white text-5xl md:text-7xl lg:text-8xl">
-              Let's Start Your Story
+              {data.hero.title}
             </h1>
           </div>
         </div>
@@ -76,16 +102,7 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <p className="text-black/60 font-light text-base md:text-lg leading-relaxed">
-              Every great film begins with a conversation. Tell us about your
-              vision, your dreams, and the moments you want to keep forever.
-              Have questions first? Visit our{' '}
-              <Link
-                to="/faq"
-                className="text-gold hover:text-gold-dark underline-elegant transition-colors duration-300"
-              >
-                FAQ page
-              </Link>
-              .
+              {data.intro.text}
             </p>
           </motion.div>
         </div>
@@ -106,36 +123,36 @@ const Contact = () => {
                 01
               </span>
               <p className="text-gold uppercase tracking-[0.3em] text-xs mb-3">
-                Get In Touch
+                {data.info.subtitle}
               </p>
               <h2 className="font-serif text-4xl lg:text-5xl leading-tight mb-8">
-                Contact Us
+                {data.info.title}
               </h2>
               <div className="decorative-line mb-8 hidden lg:block" />
 
               <div className="space-y-6">
                 <a
-                  href="mailto:hello@yarrowweddings.com"
+                  href={`mailto:${data.info.email}`}
                   className="flex items-center gap-4 group"
                 >
                   <Mail className="w-5 h-5 text-gold flex-shrink-0" />
                   <span className="text-black/60 font-light group-hover:text-gold transition-colors duration-300">
-                    hello@yarrowweddings.com
+                    {data.info.email}
                   </span>
                 </a>
                 <a
-                  href="tel:+919964787383"
+                  href={`tel:${data.info.phone}`}
                   className="flex items-center gap-4 group"
                 >
                   <Phone className="w-5 h-5 text-gold flex-shrink-0" />
                   <span className="text-black/60 font-light group-hover:text-gold transition-colors duration-300">
-                    +91 99647 87383
+                    {data.info.phone}
                   </span>
                 </a>
                 <div className="flex items-center gap-4">
                   <MapPin className="w-5 h-5 text-gold flex-shrink-0" />
                   <span className="text-black/60 font-light">
-                    Worldwide — Based in India
+                    {data.info.location}
                   </span>
                 </div>
               </div>
@@ -271,22 +288,20 @@ const Contact = () => {
                           className="flex items-center gap-3 cursor-pointer group/item"
                         >
                           <div
-                            className={`w-4 h-4 rounded-full border border-black/30 flex items-center justify-center transition-colors group-hover/item:border-gold ${
-                              formData.services.includes(service)
+                            className={`w-4 h-4 rounded-full border border-black/30 flex items-center justify-center transition-colors group-hover/item:border-gold ${formData.services.includes(service)
                                 ? 'border-gold'
                                 : ''
-                            }`}
+                              }`}
                           >
                             {formData.services.includes(service) && (
                               <div className="w-2 h-2 bg-gold rounded-full" />
                             )}
                           </div>
                           <span
-                            className={`text-sm tracking-wide transition-colors ${
-                              formData.services.includes(service)
+                            className={`text-sm tracking-wide transition-colors ${formData.services.includes(service)
                                 ? 'text-black'
                                 : 'text-black/50 group-hover/item:text-black'
-                            }`}
+                              }`}
                           >
                             {service}
                           </span>

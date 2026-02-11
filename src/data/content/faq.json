@@ -1,0 +1,96 @@
+{
+    "hero": {
+        "title": "Questions & Answers",
+        "subtitle": "Everything You Need to Know",
+        "image": "/about-bride-1.jpg"
+    },
+    "intro": {
+        "text": "We believe in transparency and openness. Here are the answers to the questions we hear most often. If there's anything else on your mind, we'd love to hear from you."
+    },
+    "categories": [
+        {
+            "title": "Booking & Availability",
+            "subtitle": "Starting Your Journey",
+            "items": [
+                {
+                    "question": "How far in advance should we book?",
+                    "answer": "We recommend reaching out 8–12 months before your wedding date to ensure availability. Our calendar fills quickly, especially during peak wedding season (October–February). For destination weddings, earlier booking is ideal so we can plan logistics together."
+                },
+                {
+                    "question": "Do you travel for destination weddings?",
+                    "answer": "Absolutely. We have documented weddings across 25+ countries — from the lakes of Italy to the beaches of Bali. Travel and accommodation are quoted separately, and we handle all logistics so you can focus on your celebration."
+                },
+                {
+                    "question": "What is the booking process?",
+                    "answer": "It begins with a conversation. After an initial call to understand your vision, we send a tailored proposal. A signed agreement and a 30% retainer secure your date. From there, we stay in close touch leading up to your big day."
+                },
+                {
+                    "question": "Can we meet before booking?",
+                    "answer": "Of course. We love meeting our couples in person or over a video call. It's important that we connect — after all, we'll be by your side on one of the most intimate days of your life."
+                }
+            ]
+        },
+        {
+            "title": "The Experience",
+            "subtitle": "On Your Day",
+            "items": [
+                {
+                    "question": "How do you approach a wedding day?",
+                    "answer": "We blend into your celebration. Our style is unobtrusive and documentary — we capture real moments as they unfold, not manufactured ones. That said, we do set aside a short window for intimate portraits that feel natural and timeless."
+                },
+                {
+                    "question": "How large is the team on the wedding day?",
+                    "answer": "This depends on the scale of your event. A typical team includes 2 lead photographers and 1–2 cinematographers. For multi-day celebrations, we bring a larger crew to ensure every moment is covered."
+                },
+                {
+                    "question": "Do you offer pre-wedding shoots?",
+                    "answer": "Yes, and we highly recommend them. A pre-wedding session helps us build rapport and understand your chemistry. It also gives you a chance to get comfortable in front of the lens before the big day."
+                },
+                {
+                    "question": "What should we wear or prepare?",
+                    "answer": "We provide a detailed style guide and a planning timeline ahead of your session. Our only real advice: be yourselves. The most beautiful photographs come from authentic emotion, not perfect outfits."
+                }
+            ]
+        },
+        {
+            "title": "Deliverables",
+            "subtitle": "Your Memories",
+            "items": [
+                {
+                    "question": "How many photos will we receive?",
+                    "answer": "For a full-day wedding, you can expect 400–800 curated, hand-edited images. We believe in quality over quantity — every image in your gallery is one we're proud of."
+                },
+                {
+                    "question": "When will we receive our photos and films?",
+                    "answer": "Highlight reels are delivered within 4–6 weeks. Full photo galleries are ready in 6–8 weeks, and cinematic films within 10–12 weeks. We share sneak peeks within the first week to tide you over."
+                },
+                {
+                    "question": "Do you offer albums or prints?",
+                    "answer": "Yes. We offer handcrafted, museum-quality albums designed in-house with Italian leather covers and archival paper. We also provide fine art prints and custom wall displays. These are heirlooms, not just photo books."
+                },
+                {
+                    "question": "Will we have rights to our photos?",
+                    "answer": "You receive a personal usage license for all delivered images. You're free to print, share, and cherish them however you wish. We retain creative rights for portfolio and editorial use, always with your blessing."
+                }
+            ]
+        },
+        {
+            "title": "Investment",
+            "subtitle": "Pricing & Packages",
+            "items": [
+                {
+                    "question": "What are your starting prices?",
+                    "answer": "Our wedding collections begin at ₹3,00,000 for photography. Cinematography packages start at ₹4,00,000. Combined packages offer the best value. Each proposal is tailored to the scope and location of your celebration."
+                },
+                {
+                    "question": "Do you offer customized packages?",
+                    "answer": "Every wedding is unique, and so is every package we create. We work closely with you to build a collection that matches your vision, timeline, and budget — no cookie-cutter solutions."
+                },
+                {
+                    "question": "What is your cancellation policy?",
+                    "answer": "Life happens, and we understand. Cancellations made 90+ days in advance receive a 50% refund of the retainer. For date changes, we do our best to accommodate your new timeline at no extra cost."
+                }
+            ]
+        }
+    ]
+}

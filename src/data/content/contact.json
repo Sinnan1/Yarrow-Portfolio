@@ -1,0 +1,17 @@
+{
+    "hero": {
+        "title": "Let's Start Your Story",
+        "subtitle": "The Beginning",
+        "image": "/about-bride-2.jpg"
+    },
+    "intro": {
+        "text": "Every great film begins with a conversation. Tell us about your vision, your dreams, and the moments you want to keep forever. Have questions first? Visit our FAQ page."
+    },
+    "info": {
+        "title": "Contact Us",
+        "subtitle": "Get In Touch",
+        "email": "hello@yarrowweddings.com",
+        "phone": "+91 99647 87383",
+        "location": "Worldwide — Based in India"
+    }
+}

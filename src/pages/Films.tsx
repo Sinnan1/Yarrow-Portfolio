@@ -1,81 +1,86 @@
 import { useState, useEffect } from 'react';
 import { Play } from 'lucide-react';
 import Navbar from '../components/Navbar';
-
-interface Film {
-  id: string;
-  title: string;
-  category: string;
-  date: string;
-  description: string;
-  thumbnail: string;
-}
+import { cmsApi } from '../api/cms';
+import type { FilmPageContent } from '../types/content';
 
 const Films = () => {
   const [activeFilter, setActiveFilter] = useState('All');
   const [isVisible, setIsVisible] = useState(false);
+  const [content, setContent] = useState<FilmPageContent | null>(null);
 
   useEffect(() => {
     setIsVisible(true);
+    cmsApi.getContent('films').then(data => {
+      if (data) setContent(data);
+    })
   }, []);
 
   const filters = ['All', 'Classic Story Telling', 'New Age Modern', 'Intimates'];
 
-  const films: Film[] = [
-    {
-      id: '1',
-      title: 'Sobhita & Chay',
-      category: 'Classic Story Telling',
-      date: 'Hyderabad',
-      description: 'A royal union in the city of pearls. Witness the grandeur of tradition meeting modern elegance.',
-      thumbnail: '/film-1.jpg',
+  const defaultContent: FilmPageContent = {
+    header: {
+      subtitle: "The Screening Room",
+      title: "Cinema & Soul"
     },
-    {
-      id: '2',
-      title: 'Monika & Vivek',
-      category: 'New Age Modern',
-      date: 'Udaipur',
-      description: 'They say monuments were built to honour love that stood the test of time. But watching these two, it felt like we were witnessing one being made.',
-      thumbnail: '/film-2.jpg',
-    },
-    {
-      id: '3',
-      title: 'Karishma & Mikhail',
-      category: 'New Age Modern',
-      date: 'Goa',
-      description: 'Some stories have a way of lingering around you, gently and in the most simplest of ways.. This one is going to stay with us for a long time.',
-      thumbnail: '/story-1.jpg',
-    },
-    {
-      id: '4',
-      title: 'Kriti & Pulkit',
-      category: 'Classic Story Telling',
-      date: 'Delhi',
-      description: 'From the very first call we had with Kriti and Pulkit we knew this one was going to be special. A full on Punjabi energy was expected but what took us by surprise was the emotional rollercoaster it turned out to be.',
-      thumbnail: '/story-2.jpg',
-    },
-    {
-      id: '5',
-      title: 'Priya & Prateik',
-      category: 'New Age Modern',
-      date: 'Mumbai',
-      description: 'Some places hold memories and some hold dreams. This home was both.',
-      thumbnail: '/story-3.jpg',
-    },
-    {
-      id: '6',
-      title: 'Aerin & Rahul',
-      category: 'Classic Story Telling',
-      date: 'Korea / India',
-      description: 'Aerin and Rahul\'s story took us on a journey across two countries and cultures.',
-      thumbnail: '/story-4.jpg',
-    },
-  ];
+    films: [
+      {
+        id: '1',
+        title: 'Sobhita & Chay',
+        category: 'Classic Story Telling',
+        date: 'Hyderabad',
+        description: 'A royal union in the city of pearls. Witness the grandeur of tradition meeting modern elegance.',
+        thumbnail: '/film-1.jpg',
+      },
+      {
+        id: '2',
+        title: 'Monika & Vivek',
+        category: 'New Age Modern',
+        date: 'Udaipur',
+        description: 'They say monuments were built to honour love that stood the test of time. But watching these two, it felt like we were witnessing one being made.',
+        thumbnail: '/film-2.jpg',
+      },
+      {
+        id: '3',
+        title: 'Karishma & Mikhail',
+        category: 'New Age Modern',
+        date: 'Goa',
+        description: 'Some stories have a way of lingering around you, gently and in the most simplest of ways.. This one is going to stay with us for a long time.',
+        thumbnail: '/story-1.jpg',
+      },
+      {
+        id: '4',
+        title: 'Kriti & Pulkit',
+        category: 'Classic Story Telling',
+        date: 'Delhi',
+        description: 'From the very first call we had with Kriti and Pulkit we knew this one was going to be special. A full on Punjabi energy was expected but what took us by surprise was the emotional rollercoaster it turned out to be.',
+        thumbnail: '/story-2.jpg',
+      },
+      {
+        id: '5',
+        title: 'Priya & Prateik',
+        category: 'New Age Modern',
+        date: 'Mumbai',
+        description: 'Some places hold memories and some hold dreams. This home was both.',
+        thumbnail: '/story-3.jpg',
+      },
+      {
+        id: '6',
+        title: 'Aerin & Rahul',
+        category: 'Classic Story Telling',
+        date: 'Korea / India',
+        description: 'Aerin and Rahul\'s story took us on a journey across two countries and cultures.',
+        thumbnail: '/story-4.jpg',
+      },
+    ]
+  };
+
+  const data = content || defaultContent;
 
   const filteredFilms =
     activeFilter === 'All'
-      ? films
-      : films.filter((f) => f.category === activeFilter);
+      ? data.films
+      : data.films.filter((f) => f.category === activeFilter);
 
   return (
     <div className="min-h-screen bg-cream overflow-x-hidden">
@@ -86,8 +91,8 @@ const Films = () => {
         <div className="max-w-[1400px] mx-auto">
           {/* Title */}
           <div className={`mb-8 md:mb-12 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <p className="text-xs uppercase tracking-[0.3em] text-black/50 mb-3 sm:mb-4">The Screening Room</p>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">Cinema & Soul</h1>
+            <p className="text-xs uppercase tracking-[0.3em] text-black/50 mb-3 sm:mb-4">{data.header.subtitle}</p>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">{data.header.title}</h1>
           </div>
 
           {/* Filters - separate row */}

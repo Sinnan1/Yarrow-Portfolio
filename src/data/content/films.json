@@ -1,0 +1,56 @@
+{
+    "header": {
+        "subtitle": "The Screening Room",
+        "title": "Cinema & Soul"
+    },
+    "films": [
+        {
+            "id": "1",
+            "title": "Sobhita & Chay",
+            "category": "Classic Story Telling",
+            "date": "Hyderabad",
+            "description": "A royal union in the city of pearls. Witness the grandeur of tradition meeting modern elegance.",
+            "thumbnail": "/film-1.jpg"
+        },
+        {
+            "id": "2",
+            "title": "Monika & Vivek",
+            "category": "New Age Modern",
+            "date": "Udaipur",
+            "description": "They say monuments were built to honour love that stood the test of time. But watching these two, it felt like we were witnessing one being made.",
+            "thumbnail": "/film-2.jpg"
+        },
+        {
+            "id": "3",
+            "title": "Karishma & Mikhail",
+            "category": "New Age Modern",
+            "date": "Goa",
+            "description": "Some stories have a way of lingering around you, gently and in the most simplest of ways.. This one is going to stay with us for a long time.",
+            "thumbnail": "/story-1.jpg"
+        },
+        {
+            "id": "4",
+            "title": "Kriti & Pulkit",
+            "category": "Classic Story Telling",
+            "date": "Delhi",
+            "description": "From the very first call we had with Kriti and Pulkit we knew this one was going to be special. A full on Punjabi energy was expected but what took us by surprise was the emotional rollercoaster it turned out to be.",
+            "thumbnail": "/story-2.jpg"
+        },
+        {
+            "id": "5",
+            "title": "Priya & Prateik",
+            "category": "New Age Modern",
+            "date": "Mumbai",
+            "description": "Some places hold memories and some hold dreams. This home was both.",
+            "thumbnail": "/story-3.jpg"
+        },
+        {
+            "id": "6",
+            "title": "Aerin & Rahul",
+            "category": "Classic Story Telling",
+            "date": "Korea / India",
+            "description": "Aerin and Rahul's story took us on a journey across two countries and cultures.",
+            "thumbnail": "/story-4.jpg"
+        }
+    ]
+}
